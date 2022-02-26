@@ -44,8 +44,7 @@ resource "aws_secretsmanager_secret_version" "schema_registry_basic_auth" {
 }
 
 module "lambda_to_sqs" {
-  #source                       = "https://github.com/andrewinci/lambda-kafka2sqs/releases/download/v1.0.1/module.zip"
-  source                          = "../../module"
+  source                          = "https://github.com/andrewinci/lambda-kafka2sqs/releases/download/v1.6.0/module.zip//lambda"
   function_name                   = "consumer"
   kafka_endpoints                 = var.kafka_endpoints
   kafka_authentication_type       = "BASIC"
