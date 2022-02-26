@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.1.0...v1.2.0) (2022-02-26)
+
+
+### Bug Fixes
+
+* Re-deploy the lambda if the code changed ([9b485cb](https://github.com/andrewinci/lambda-kafka2sqs/commit/9b485cbf55e81a2f486d1d5f26098c767dc64278))
+
+
+### Features
+
+* Add support for basic auth ([a90f174](https://github.com/andrewinci/lambda-kafka2sqs/commit/a90f174ca276a6f283c9db6e0d5fd1429ec54967))
+
 # [1.1.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.0.1...v1.1.0) (2022-02-26)
 
 
