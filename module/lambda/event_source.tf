@@ -1,6 +1,6 @@
 locals {
   auth_type = lookup({
-    BASIC = "BASIC_AUTH"
+    SASL = "BASIC_AUTH"
     MTLS  = "CLIENT_CERTIFICATE_TLS_AUTH"
   }, var.kafka_authentication_type, "")
   source_access_configuration = concat(
