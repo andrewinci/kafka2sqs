@@ -5,6 +5,11 @@ resource "aws_lambda_function" "lambda" {
   filename         = local.function_zip
   source_code_hash = filesha256(local.function_zip)
   runtime          = "python3.9"
+  environment {
+    variables = {
+      TOPIC_CONFIGURATION = jsonencode(var.kafka_topics)
+    }
+  }
   depends_on = [
     aws_cloudwatch_log_group.consumer_lambda_logging
   ]

@@ -12,8 +12,9 @@ locals {
 }
 
 resource "aws_lambda_event_source_mapping" "event_source" {
+  for_each          = toset([for t in var.kafka_topics : t.topic_name])
   function_name     = aws_lambda_function.lambda.arn
-  topics            = [var.kafka_topic]
+  topics            = [each.value]
   starting_position = var.kafka_starting_position
   batch_size        = var.kafka_batch_size
 

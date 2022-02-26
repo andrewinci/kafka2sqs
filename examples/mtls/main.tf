@@ -36,11 +36,11 @@ module "lambda_to_sqs" {
   #source                       = "https://github.com/andrewinci/lambda-kafka2sqs/releases/download/v1.0.1/module.zip"
   source                    = "../module"
   function_name             = "consumer"
-  kafka_topic               = "example"
   kafka_endpoints           = "kafka1.example.com:9092,kafka2.example.com:9092"
   kafka_subnet_ids          = ["subnet1"]
   kafka_sg_ids              = ["sg-example"]
   kafka_authentication_type = "MTLS"
   kafka_credentials_arn     = aws_secretsmanager_secret.kafka_user_certificate.arn
   kafka_ca_secret_arn       = aws_secretsmanager_secret.kafka_ca_certificate.arn
+  kafka_topics              = [{ topic_name = "test", is_avro = true }]
 }

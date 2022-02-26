@@ -10,10 +10,16 @@ variable "log_group_retention_days" {
   description = "Cloudwatch log group retention in days"
 }
 
-# todo: support multiple topics
-variable "kafka_topic" {
-  type        = string
-  description = "Kafka topic name"
+variable "kafka_topics" {
+  type = list(object({
+    topic_name = string
+    is_avro    = bool
+  }))
+  description = "Kafka topics definition"
+  validation {
+    condition     = length(var.kafka_topics) > 0
+    error_message = "At least one kafka topic need to be defined."
+  }
 }
 
 variable "kafka_batch_size" {

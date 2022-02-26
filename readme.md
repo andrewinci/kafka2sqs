@@ -13,7 +13,7 @@ See full example at [example.tf](./examples/basic_auth/main.tf)
 module "lambda_to_sqs" {
   source                    = "https://github.com/andrewinci/lambda-kafka2sqs/releases/download/v<version>/module.zip"
   function_name             = "consumer"
-  kafka_topic               = "test"
+  kafka_topics              = [{ topic_name = "test", is_avro = true }]
   kafka_endpoints           = "example.confluent.cloud:9092"
   kafka_authentication_type = "BASIC"
   kafka_credentials_arn     = aws_secretsmanager_secret.kafka_basic_auth.arn
@@ -28,13 +28,14 @@ See full example at [example.tf](./examples/mtls/main.tf)
 module "lambda_to_sqs" {
   source                       = "https://github.com/andrewinci/lambda-kafka2sqs/releases/download/v<version>/module.zip"
   function_name                = "consumer"
-  kafka_topic                  = "example"
   kafka_endpoints              = "kafka1.example.com:9092,kafka2.example.com:9092"
+  kafka_topics                 = [{ topic_name = "example", is_avro = false }]
   kafka_subnet_ids             = ["subnet1"]
   kafka_sg_id                  = "sg-example"
   kafka_authentication_type    = "mTLS"
   kafka_credentials_arn        = aws_secretsmanager_secret.kafka_basic_auth.arn
   kafka_ca_secret_arn          = aws_secretsmanager_secret.kafka_ca_certificate.arn
+  
 }
 ```
 
@@ -70,7 +71,7 @@ module "lambda_to_sqs" {
 | <a name="input_kafka_sg_ids"></a> [kafka\_sg\_ids](#input\_kafka\_sg\_ids) | List of security group id to access kafka | `list(string)` | `[]` | no |
 | <a name="input_kafka_starting_position"></a> [kafka\_starting\_position](#input\_kafka\_starting\_position) | The position in the stream where AWS Lambda should start reading. Supported values are: LATEST, TRIM\_HORIZON | `string` | `"TRIM_HORIZON"` | no |
 | <a name="input_kafka_subnet_ids"></a> [kafka\_subnet\_ids](#input\_kafka\_subnet\_ids) | List of subnets ids to use for the kafka event source | `list(string)` | `[]` | no |
-| <a name="input_kafka_topic"></a> [kafka\_topic](#input\_kafka\_topic) | Kafka topic name | `string` | n/a | yes |
+| <a name="input_kafka_topics"></a> [kafka\_topics](#input\_kafka\_topics) | Kafka topics definition | <pre>list(object({<br>    topic_name = string<br>    is_avro    = bool<br>  }))</pre> | n/a | yes |
 | <a name="input_log_group_retention_days"></a> [log\_group\_retention\_days](#input\_log\_group\_retention\_days) | Cloudwatch log group retention in days | `number` | `30` | no |
 
 # Dev
