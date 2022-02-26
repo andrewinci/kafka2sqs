@@ -53,7 +53,7 @@ check: venv test
 	$(PYTHON) -m black --check src/
 
 test:
-	$(PYTHON) -m pytest test
+	$(PYTHON) -m pytest test --asyncio-mode=strict
 
 clean:
 	rm -rf $(VENV) \

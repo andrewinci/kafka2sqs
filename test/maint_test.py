@@ -1,4 +1,5 @@
 from src.main import Handler, RawRecord
+import pytest
 
 
 def test_parse_topic_configuration_happy_path():
@@ -15,10 +16,10 @@ def test_parse_topic_configuration_raise_if_duplicate_topic():
         return
     assert False
 
-
-def test_handler():
+@pytest.mark.asyncio
+async def test_handler():
     sut = Handler("[]")
-    result = sut.handle(event)
+    result = await sut.handle(event)
     assert result
 
 
@@ -29,11 +30,11 @@ def test_extract_records():
     assert records[0].topic == "test"
     assert records[1].timestamp == 1645867668847
 
-
-def test_decode_string_record():
+@pytest.mark.asyncio
+async def test_decode_string_record():
     rawRecord = RawRecord("topic", "dGVzdC1rZXk=", "dGVzdC12YWx1ZQ==", 123, {})
     sut = Handler("""[{"topic_name": "topic", "is_avro": false}]""")
-    record = sut.deserialize_record(rawRecord)
+    record = await sut.deserialize_record(rawRecord)
     assert record.key == "test-key"
     assert record.value == "test-value"
 
