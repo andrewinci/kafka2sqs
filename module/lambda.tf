@@ -1,9 +1,10 @@
 resource "aws_lambda_function" "lambda" {
-  function_name = var.function_name
-  role          = aws_iam_role.role.arn
-  handler       = local.function_handler
-  filename      = local.function_zip
-  runtime       = "python3.9"
+  function_name    = var.function_name
+  role             = aws_iam_role.role.arn
+  handler          = local.function_handler
+  filename         = local.function_zip
+  source_code_hash = filesha256(local.function_zip)
+  runtime          = "python3.9"
   depends_on = [
     aws_cloudwatch_log_group.consumer_lambda_logging
   ]
