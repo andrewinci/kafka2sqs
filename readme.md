@@ -5,7 +5,7 @@ The lambda deserialize any received message and publish them into an SQS queue.
 
 ## Getting started
 
-```json
+```hcl
 module "lambda_to_sqs" {
   source = "https://github.com/andrewinci/lambda-kafka2sqs/releases/download/v1.0.1/module.zip"
   kafka_topic = "example"
