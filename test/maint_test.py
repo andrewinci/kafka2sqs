@@ -1,5 +1,4 @@
-from src.main import parse_topic_configuration
-from src.handler import Handler, RawRecord
+from src.main import Handler, RawRecord, parse_topic_configuration
 import pytest
 
 

@@ -71,3 +71,15 @@ variable "kafka_ca_secret_arn" {
   description = "The arn of the secret containing the ca certificate in PEM format"
   default     = ""
 }
+
+variable "schema_registry_endpoint" {
+  type        = string
+  description = "Schema registry endpoint including the protocol (i.e. https://...)."
+  default     = ""
+}
+
+variable "schema_registry_credentials_arn" {
+  type        = string
+  description = "Secret containing the username and password to connect to schema registry"
+  default     = ""
+}
