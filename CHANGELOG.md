@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.8.0...v1.8.1) (2022-02-26)
+
+
+### Bug Fixes
+
+* invalid auth mapping ([bb5e171](https://github.com/andrewinci/lambda-kafka2sqs/commit/bb5e1711ce016caaa87e39ed40d9d618853bbd81))
+
 # [1.8.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.7.1...v1.8.0) (2022-02-26)
 
 
