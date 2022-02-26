@@ -12,7 +12,7 @@ module "lambda_to_sqs" {
   kafka_subnet_ids          = ["subnet1"]
   kafka_sg_ids              = ["sg-example"]
   kafka_authentication_type = "MTLS"
-  kafka_credentials_arn     = aws_secretsmanager_secret.kafka_user_certificate.arn
-  kafka_ca_secret_arn       = aws_secretsmanager_secret.kafka_ca_certificate.arn
+  kafka_credentials_arn     = module.mtls_secrets.kafka_credentials_arn
+  kafka_ca_secret_arn       = module.mtls_secrets.kafka_ca_secret_arn
   kafka_topics              = [{ topic_name = "test", is_avro = true }]
 }
