@@ -5,7 +5,7 @@ The lambda deserialize any received message and publish them into an SQS queue.
 
 ## Requirements
 - python3
-- [tfswitch](https://github.com/warrensbox/terraform-switcher)
+- terraform
 
 ## Dev
 

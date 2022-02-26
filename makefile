@@ -22,17 +22,22 @@ $(LAMBDA_ZIP): requirements.txt src/*
 	cd src && zip -g ../$(LAMBDA_ZIP) *
 	rm -rf $(BUILD_VENV)
 
-lint: $(VENV)/bin/activate
+lint: venv
 	$(PYTHON) -m black src/
 	$(TF) fmt -recursive module
+
+venv: $(VENV)/bin/activate
+	@echo "-----\nRun: \n source $(VENV)/bin/activate"
 
 $(VENV)/bin/activate: requirements.txt requirements.dev.txt
 	python3 -m venv $(VENV)
 	$(PIP) install -r requirements.dev.txt
 	$(PIP) install -r requirements.txt
 
-venv: $(VENV)/bin/activate
-	@echo "-----\nRun: \n source $(VENV)/bin/activate"
+check: venv
+	$(TF) fmt -recursive -check module
+	$(PYTHON) -m black --check src/
+
 clean:
 	rm -rf $(VENV)
 	rm -rf $(BUILD_VENV)
