@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.0.0...v1.0.1) (2022-02-26)
+
+
+### Bug Fixes
+
+* Lambda zip path ([90c5b4f](https://github.com/andrewinci/lambda-kafka2sqs/commit/90c5b4f4f063097aabb50808563629ade3f633ad))
+
 # 1.0.0 (2022-02-26)
 
 
