@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.2.0...v1.3.0) (2022-02-26)
+
+
+### Features
+
+* Prevent user to not pass any credentials ([75e5eb4](https://github.com/andrewinci/lambda-kafka2sqs/commit/75e5eb450aa3d1e51624540b0517e6b303629a0b))
+
 # [1.2.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.1.0...v1.2.0) (2022-02-26)
 
 
