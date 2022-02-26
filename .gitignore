@@ -4,3 +4,5 @@ lambda.zip
 .terraform*
 terraform.tfstate*
 module.zip
+__pycache__
+test.tfvars

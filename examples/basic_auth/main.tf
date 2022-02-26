@@ -1,3 +1,8 @@
+variable "endpoints" {
+  type    = string
+  default = "example.confluent.cloud:9092"
+}
+
 variable "basic_auth" {
   type = map(string)
   default = {
@@ -20,7 +25,7 @@ module "lambda_to_sqs" {
   source                    = "../../module"
   function_name             = "consumer"
   kafka_topic               = "test"
-  kafka_endpoints           = "example.confluent.cloud:9092"
+  kafka_endpoints           = var.endpoints
   kafka_authentication_type = "BASIC"
   kafka_credentials_arn     = aws_secretsmanager_secret.kafka_basic_auth.arn
 }

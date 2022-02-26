@@ -6,7 +6,7 @@ BUILD_VENV=build_venv
 LAMBDA_ZIP=lambda.zip
 TF_ZIP=module.zip
 
-.PHONY: clean
+.PHONY: clean test
 
 $(TF_ZIP): module/$(LAMBDA_ZIP) module/*
 	rm -rf $(TF_ZIP)
@@ -24,13 +24,15 @@ module/$(LAMBDA_ZIP): requirements.txt src/*
 	cd $(BUILD_VENV)/lib/python*/site-packages; \
 	rm -rf pip* setup* pkg_* _distutils_hack; \
 	zip -r ../../../../$(LAMBDA_ZIP) .
+	@echo "Remove pycache"
+	cd src && rm -rf __pycache__
 	@echo "Add the handler"
 	cd src && zip -g ../$(LAMBDA_ZIP) *
 	@echo "Move the lambda into the tf module"
 	mv $(LAMBDA_ZIP) module/
 
 lint: venv
-	$(PYTHON) -m black src/
+	$(PYTHON) -m black src/ test/
 	$(TF) fmt -recursive module
 	$(TF) fmt -recursive examples
 
@@ -42,13 +44,16 @@ $(VENV)/bin/activate: requirements.txt requirements.dev.txt
 	$(PIP) install -r requirements.dev.txt
 	$(PIP) install -r requirements.txt
 
-check: venv
+check: venv test
 	cd module; \
 	$(TF) init; \
 	$(TF) fmt -recursive -check; \
 	$(TF) validate
 	$(TF) fmt -recursive -check examples
 	$(PYTHON) -m black --check src/
+
+test:
+	$(PYTHON) -m pytest test
 
 clean:
 	rm -rf $(VENV) \
