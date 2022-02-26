@@ -1,5 +1,5 @@
 kafka2sqs
 lambda.zip
 .terraform*
-terraform.tfstate
+terraform.tfstate*
 module.zip
