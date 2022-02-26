@@ -37,3 +37,4 @@ clean:
 	rm -rf $(VENV)
 	rm -rf $(BUILD_VENV)
 	rm -rf $(LAMBDA_ZIP)
+	rm -rf $(TF_ZIP)
