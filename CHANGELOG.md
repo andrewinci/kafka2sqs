@@ -1,3 +1,15 @@
+# [1.8.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.7.1...v1.8.0) (2022-02-26)
+
+
+### Bug Fixes
+
+* lint ([e1dd7fc](https://github.com/andrewinci/lambda-kafka2sqs/commit/e1dd7fcb000c92d2fc2e40258cbe9b7d5968210f))
+
+
+### Features
+
+* Add sasl submodule ([d4a9de6](https://github.com/andrewinci/lambda-kafka2sqs/commit/d4a9de65861dba0e7fdcf5e8a72756552f8169c6))
+
 ## [1.7.1](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.7.0...v1.7.1) (2022-02-26)
 
 
