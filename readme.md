@@ -5,18 +5,31 @@ The lambda deserialize any received message and publish them into an SQS queue.
 
 ## Getting started
 
-### Basic auth example (Confluent cloud)
+### SASL auth example (Confluent cloud)
 
-See full example at [example.tf](./examples/basic_auth/main.tf)
+See full example at [example.tf](./examples/sasl/main.tf)
 
 ```hcl
+module "sasl_secrets" {
+  source                   = "https://github.com/andrewinci/lambda-kafka2sqs/releases/latest/download/module.zip//sasl_secrets"
+  kafka_username           = "kafka_username"
+  kafka_password           = "kafka_password"
+  schema_registry_username = "schema_registry_username"
+  schema_registry_password = "schema_registry_password"
+}
+
 module "lambda_to_sqs" {
-  source                    = "https://github.com/andrewinci/lambda-kafka2sqs/releases/download/v<version>/module.zip"
-  function_name             = "consumer"
-  kafka_topics              = [{ topic_name = "test", is_avro = true }]
-  kafka_endpoints           = "example.confluent.cloud:9092"
-  kafka_authentication_type = "BASIC"
-  kafka_credentials_arn     = aws_secretsmanager_secret.kafka_basic_auth.arn
+  source                          = "https://github.com/andrewinci/lambda-kafka2sqs/releases/latest/download/module.zip//lambda"
+  function_name                   = "consumer"
+  kafka_endpoints                 = "whatever.europe-west1.gcp.confluent.cloud:9092"
+  kafka_authentication_type       = "SASL"
+  kafka_credentials_arn           = module.sasl_secrets.kafka_credentials_arn
+  schema_registry_endpoint        = "https://schema_registry.endpoint.com"
+  schema_registry_credentials_arn = module.sasl_secrets.schema_registry_credentials_arn
+  kafka_topics = [
+    { topic_name = "test", is_avro = true },
+    { topic_name = "test-2", is_avro = false }
+  ]
 }
 ```
 
@@ -73,6 +86,3 @@ make clean
 ```
 
 The documentation is generated with [terraform-docs](https://terraform-docs.io/) 
-```bash
-terraform-docs markdown module
-```

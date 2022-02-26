@@ -53,10 +53,10 @@ variable "kafka_sg_ids" {
 
 variable "kafka_authentication_type" {
   type        = string
-  description = "The authentication to perform to connect to kafka. Possible values are: \"BASIC\" or \"mTLS\"."
+  description = "The authentication to perform to connect to kafka. Possible values are: \"SASL\" or \"mTLS\"."
   validation {
-    condition     = contains(["BASIC", "mTLS"], var.kafka_authentication_type)
-    error_message = "Allowed values for kafka_authentication_type are \"BASIC\" or \"mTLS\"."
+    condition     = contains(["SASL", "mTLS"], var.kafka_authentication_type)
+    error_message = "Allowed values for kafka_authentication_type are \"SASL\" or \"mTLS\"."
   }
 }
 

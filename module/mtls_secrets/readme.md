@@ -1,6 +1,7 @@
 # mTLS secrets
 
-Create the secretsmanager resources required for to the [lambda Kafka consumer](../lambda/readme.md).
+Create the secretsmanager resources required for to the [lambda Kafka consumer](../lambda/readme.md) in order to authenticate 
+via mTLS with the kafka cluster.
 
 ## Requirements
 
