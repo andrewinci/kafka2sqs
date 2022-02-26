@@ -6,7 +6,8 @@ resource "aws_lambda_function" "lambda" {
   filename         = local.function_zip
   runtime          = "python3.9"
   depends_on = [
-    aws_cloudwatch_log_group.consumer_lambda_logging
+    aws_cloudwatch_log_group.consumer_lambda_logging,
+    null_resource.package_lambda
   ]
 }
 

@@ -34,9 +34,9 @@ variable "kafka_subnet_ids" {
   description = "List of subnets ids to use for the kafka event source"
 }
 
-variable "kafka_sg" {
+variable "kafka_sg_id" {
   type        = string
-  description = "Security group to access kafka"
+  description = "Security group id to access kafka"
 }
 
 /*

@@ -1,5 +1,5 @@
 resource "aws_lambda_event_source_mapping" "event_source" {
-  function_name     = aws_lambda_function.consumer.arn
+  function_name     = aws_lambda_function.lambda.arn
   topics            = [var.kafka_topic]
   starting_position = var.kafka_starting_position
   batch_size        = var.kafka_batch_size
@@ -21,7 +21,7 @@ resource "aws_lambda_event_source_mapping" "event_source" {
 
   source_access_configuration {
     type = "VPC_SECURITY_GROUP"
-    uri  = "security_group:${var.kafka_sg}"
+    uri  = "security_group:${var.kafka_sg_id}"
   }
 
   source_access_configuration {
