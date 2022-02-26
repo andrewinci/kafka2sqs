@@ -18,7 +18,7 @@ $(ZIP_NAME): requirements.txt src/*
 
 lint: $(VENV)/bin/activate
 	$(PYTHON) -m black src/
-	# $(TF) fmt -recursive module
+	$(TF) fmt -recursive module
 
 $(VENV)/bin/activate: requirements.txt requirements.dev.txt
 	python3 -m venv $(VENV)
