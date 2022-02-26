@@ -22,6 +22,7 @@ module/$(LAMBDA_ZIP): requirements.txt src/*
 	$(BUILD_VENV)/bin/pip install -r requirements.txt
 	@echo "Package dependencies"
 	cd $(BUILD_VENV)/lib/python*/site-packages; \
+	rm -rf pip* setup* pkg_* _distutils_hack; \
 	zip -r ../../../../$(LAMBDA_ZIP) .
 	@echo "Add the handler"
 	cd src && zip -g ../$(LAMBDA_ZIP) *
