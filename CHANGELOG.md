@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.6.0...v1.7.0) (2022-02-26)
+
+
+### Features
+
+* Add tls_secrets module ([d123a15](https://github.com/andrewinci/lambda-kafka2sqs/commit/d123a15302060e109c7a2f4483d1796c93a591d3))
+
 # [1.6.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.5.0...v1.6.0) (2022-02-26)
 
 
