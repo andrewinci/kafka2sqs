@@ -1,3 +1,11 @@
+# [1.6.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.5.0...v1.6.0) (2022-02-26)
+
+
+### Features
+
+* Inject schema registry credentials ([be86edd](https://github.com/andrewinci/lambda-kafka2sqs/commit/be86edd016713184452c503dcb403ecc59104426))
+* Support avro deserialization from the lambda ([8e1d90e](https://github.com/andrewinci/lambda-kafka2sqs/commit/8e1d90eb823c9c02dd5736c021455a4b0372e14e))
+
 # [1.5.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.4.0...v1.5.0) (2022-02-26)
 
 
