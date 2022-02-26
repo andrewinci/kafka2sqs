@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.4.0...v1.5.0) (2022-02-26)
+
+
+### Features
+
+* Support multiple topic serialization config ([9a589f6](https://github.com/andrewinci/lambda-kafka2sqs/commit/9a589f6d438da4b1e991e5b454ca2ee26be570fb))
+
 # [1.4.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.3.0...v1.4.0) (2022-02-26)
 
 
