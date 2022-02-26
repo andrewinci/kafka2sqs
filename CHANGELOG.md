@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.3.0...v1.4.0) (2022-02-26)
+
+
+### Features
+
+* Deserialise string key/value ([014899c](https://github.com/andrewinci/lambda-kafka2sqs/commit/014899c13a934f8d3e2902dbf959fe5b1c932d09))
+
 # [1.3.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.2.0...v1.3.0) (2022-02-26)
 
 
