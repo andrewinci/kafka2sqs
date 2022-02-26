@@ -45,23 +45,23 @@ variable "kafka_sg_ids" {
   default     = []
 }
 
-# MTLS variables
-
-variable "kafka_certificate_secret_arn" {
+variable "kafka_authentication_type" {
   type        = string
-  description = "The arn of the secret containing the client certificate"
+  description = "The authentication to perform to connect to kafka. Possible values are: \"BASIC\" or \"mTLS\"."
+  validation {
+    condition     = contains(["BASIC", "mTLS"], var.kafka_authentication_type)
+    error_message = "Allowed values for kafka_authentication_type are \"BASIC\" or \"mTLS\"."
+  }
+}
+
+variable "kafka_credentials_arn" {
+  type        = string
+  description = "The arn of the secret containing the kafka credentials. The content dependes on the \"kafka_authentication_type\" var."
   default     = ""
 }
 
 variable "kafka_ca_secret_arn" {
   type        = string
   description = "The arn of the secret containing the ca certificate in PEM format"
-  default     = ""
-}
-
-# BASIC AUTH variables
-variable "kafka_basic_auth_secret_arn" {
-  type        = string
-  description = "The arn of the secret containing the username and password"
   default     = ""
 }
