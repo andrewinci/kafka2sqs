@@ -36,27 +36,23 @@ variable "kafka_endpoints" {
 variable "kafka_subnet_ids" {
   type        = list(string)
   description = "List of subnets ids to use for the kafka event source"
+  default     = []
 }
 
-variable "kafka_sg_id" {
-  type        = string
-  description = "The security group id to access kafka"
+variable "kafka_sg_ids" {
+  type        = list(string)
+  description = "List of security group id to access kafka"
+  default     = []
 }
 
-/*
-  Format for this should be
-  {\"certificate\": \"PEM certificate\", \"privateKey\": \"somePrivateKey\", (OPTIONAL) \"privateKeyPassword\": \"somePrivateKeyPassword\"}",
-  */
 variable "kafka_certificate_secret_arn" {
   type        = string
   description = "The arn of the secret containing the client certificate"
+  default     = ""
 }
 
-/*
-Format for this should be
-{\"certificate\": \"PEM certificate\"}",
-*/
 variable "kafka_ca_secret_arn" {
   type        = string
   description = "The arn of the secret containing the ca certificate in PEM format"
+  default     = ""
 }
