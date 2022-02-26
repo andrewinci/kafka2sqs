@@ -3,21 +3,6 @@ variable "function_name" {
   default = "kafka-consumer"
 }
 
-variable "function_sourcecode" {
-  type    = string
-  default = "${path.module}/../src/main.py"
-}
-
-variable "function_zip" {
-  type    = string
-  default = "${path.module}/../lambda.zip"
-}
-
-variable "function_handler" {
-  type    = string
-  default = "main.lambda_handler"
-}
-
 variable "log_group_retention_days" {
   type    = number
   default = 30

@@ -1,22 +1,4 @@
-resource "aws_lambda_function" "consumer" {
-  function_name    = var.function_name
-  role             = aws_iam_role.role.arn
-  handler          = var.function_handler
-  source_code_hash = filebase64sha256(var.function_sourcecode)
-  filename         = var.function_zip
-  runtime          = "python3.9"
-  depends_on = [
-    aws_cloudwatch_log_group.consumer_lambda_logging
-  ]
-}
-
-resource "aws_cloudwatch_log_group" "consumer_lambda_logging" {
-  name              = "/aws/lambda/${var.function_name}"
-  retention_in_days = var.log_group_retention_days
-}
-
-
-resource "aws_lambda_event_source_mapping" "lambda" {
+resource "aws_lambda_event_source_mapping" "event_source" {
   function_name     = aws_lambda_function.consumer.arn
   topics            = [var.kafka_topic]
   starting_position = var.kafka_starting_position
