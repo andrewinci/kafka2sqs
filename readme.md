@@ -72,7 +72,7 @@ module "lambda_to_sqs" {
 
 Package the terraform module with
 ```bash
-make
+make clean && make
 ```
 
 Init the python virtualenv with

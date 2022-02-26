@@ -8,19 +8,25 @@ TF_ZIP=module.zip
 
 .PHONY: clean
 
-$(TF_ZIP): $(LAMBDA_ZIP) module/*
+$(TF_ZIP): module/$(LAMBDA_ZIP) module/*
 	rm -rf $(TF_ZIP)
-	cd module && zip -r ../$(TF_ZIP) .
-	zip -g $(TF_ZIP) $(LAMBDA_ZIP)
+	cd module && zip -r ../$(TF_ZIP) *.tf
+	cd module && zip -r ../$(TF_ZIP) *.zip
 
-$(LAMBDA_ZIP): requirements.txt src/*
-	rm -rf lambda.zip
+module/$(LAMBDA_ZIP): requirements.txt src/*
+	@echo "Cleanup previous artifacts if any"
+	rm -rf $(BUILD_VENV)
+	rm -rf  module/lambda.zip
+	@echo "Init prod venv"
 	python3 -m venv $(BUILD_VENV); \
 	$(BUILD_VENV)/bin/pip install -r requirements.txt
+	@echo "Package dependencies"
 	cd $(BUILD_VENV)/lib/python*/site-packages; \
 	zip -r ../../../../$(LAMBDA_ZIP) .
+	@echo "Add the handler"
 	cd src && zip -g ../$(LAMBDA_ZIP) *
-	rm -rf $(BUILD_VENV)
+	@echo "Move the lambda into the tf module"
+	mv $(LAMBDA_ZIP) module/
 
 lint: venv
 	$(PYTHON) -m black src/
@@ -36,12 +42,17 @@ $(VENV)/bin/activate: requirements.txt requirements.dev.txt
 	$(PIP) install -r requirements.txt
 
 check: venv
-	$(TF) fmt -recursive -check module
+	cd module; \
+	$(TF) init; \
+	$(TF) fmt -recursive -check; \
+	$(TF) validate
 	$(TF) fmt -recursive -check examples
 	$(PYTHON) -m black --check src/
 
 clean:
-	rm -rf $(VENV)
-	rm -rf $(BUILD_VENV)
-	rm -rf $(LAMBDA_ZIP)
-	rm -rf $(TF_ZIP)
+	rm -rf $(VENV) \
+		$(BUILD_VENV) \
+		module/$(LAMBDA_ZIP) \
+		$(TF_ZIP) \
+		module/.terraform \
+		module/.terraform.lock.hcl

@@ -1,4 +1,5 @@
 kafka2sqs
+build_venv
 lambda.zip
 .terraform*
 terraform.tfstate*
