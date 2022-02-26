@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.7.0...v1.7.1) (2022-02-26)
+
+
+### Bug Fixes
+
+* mTLS typos ([e937ecc](https://github.com/andrewinci/lambda-kafka2sqs/commit/e937ecc55d1dba7315361d1a1f882ec6a3acf692))
+
 # [1.7.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.6.0...v1.7.0) (2022-02-26)
 
 
