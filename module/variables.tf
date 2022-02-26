@@ -1,27 +1,31 @@
 variable "function_name" {
-  type    = string
-  default = "kafka-consumer"
+  type        = string
+  default     = "kafka-consumer"
+  description = "Lambda function name"
 }
 
 variable "log_group_retention_days" {
-  type    = number
-  default = 30
+  type        = number
+  default     = 30
+  description = "Cloudwatch log group retention in days"
 }
 
 # todo: support multiple topics
 variable "kafka_topic" {
-  type = string
+  type        = string
+  description = "Kafka topic name"
 }
 
 variable "kafka_batch_size" {
-  type    = number
-  default = 10
+  type        = number
+  default     = 10
+  description = "The largest number of records that Lambda will retrieve from each kafka topic"
 }
 
-# One of: LATEST, TRIM_HORIZON
 variable "kafka_starting_position" {
-  type    = string
-  default = "TRIM_HORIZON"
+  type        = string
+  default     = "TRIM_HORIZON"
+  description = "The position in the stream where AWS Lambda should start reading. Supported values are: LATEST, TRIM_HORIZON"
 }
 
 variable "kafka_endpoints" {
@@ -36,7 +40,7 @@ variable "kafka_subnet_ids" {
 
 variable "kafka_sg_id" {
   type        = string
-  description = "Security group id to access kafka"
+  description = "The security group id to access kafka"
 }
 
 /*
@@ -45,7 +49,7 @@ variable "kafka_sg_id" {
   */
 variable "kafka_certificate_secret_arn" {
   type        = string
-  description = "arn of the secret containing the client certificate"
+  description = "The arn of the secret containing the client certificate"
 }
 
 /*
@@ -54,5 +58,5 @@ Format for this should be
 */
 variable "kafka_ca_secret_arn" {
   type        = string
-  description = "arn of the secret containing the ca certificate in PEM format"
+  description = "The arn of the secret containing the ca certificate in PEM format"
 }
