@@ -37,10 +37,11 @@ def retrieve_schema_registry_configs() -> typing.Optional[SchemaRegistryConfig]:
     else:
         client = boto3.client("secretsmanager")
         response = client.get_secret_value(SecretId=SCHEMA_REGISTRY_SECRET_ARN)
-        credentials = json.loads(response['SecretString'])
+        credentials = json.loads(response["SecretString"])
         return SchemaRegistryConfig(
             SCHEMA_REGISTRY_URL, credentials["username"], credentials["password"]
         )
+
 
 def build_avro_serializer(
     schema_registry_config: SchemaRegistryConfig,
@@ -67,7 +68,6 @@ def parse_topic_configuration(config) -> dict:
             raise Exception("Duplicate topic name in configuration")
         res[c["topic_name"]] = c["is_avro"]
     return res
-
 
 
 class Handler:

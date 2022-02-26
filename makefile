@@ -8,15 +8,14 @@ TF_ZIP=module.zip
 
 .PHONY: clean test
 
-$(TF_ZIP): module/$(LAMBDA_ZIP) module/*
+$(TF_ZIP): module/lambda/$(LAMBDA_ZIP) module/*
 	rm -rf $(TF_ZIP)
-	cd module && zip -r ../$(TF_ZIP) *.tf
-	cd module && zip -r ../$(TF_ZIP) *.zip
+	cd module && zip -r ../$(TF_ZIP) *
 
-module/$(LAMBDA_ZIP): requirements.txt src/*
+module/lambda/$(LAMBDA_ZIP): requirements.txt src/*
 	@echo "Cleanup previous artifacts if any"
 	rm -rf $(BUILD_VENV)
-	rm -rf  module/lambda.zip
+	rm -rf  module/lambda/$(LAMBDA_ZIP)
 	@echo "Init prod venv"
 	python3 -m venv $(BUILD_VENV); \
 	$(BUILD_VENV)/bin/pip install -r requirements.txt
@@ -29,7 +28,7 @@ module/$(LAMBDA_ZIP): requirements.txt src/*
 	@echo "Add the handler"
 	cd src && zip -g ../$(LAMBDA_ZIP) *
 	@echo "Move the lambda into the tf module"
-	mv $(LAMBDA_ZIP) module/
+	mv $(LAMBDA_ZIP) module/lambda/
 
 lint: venv
 	$(PYTHON) -m black src/ test/
@@ -58,7 +57,5 @@ test:
 clean:
 	rm -rf $(VENV) \
 		$(BUILD_VENV) \
-		module/$(LAMBDA_ZIP) \
-		$(TF_ZIP) \
-		module/.terraform \
-		module/.terraform.lock.hcl
+		module/lambda/$(LAMBDA_ZIP) \
+		$(TF_ZIP)
