@@ -3,17 +3,23 @@ VENV=kafka2sqs
 PYTHON = $(VENV)/bin/python3
 PIP = $(VENV)/bin/pip
 BUILD_VENV=build_venv
-ZIP_NAME=lambda.zip
+LAMBDA_ZIP=lambda.zip
+TF_ZIP=module.zip
 
 .PHONY: clean
 
-$(ZIP_NAME): requirements.txt src/*
+$(TF_ZIP): $(LAMBDA_ZIP) module/*
+	rm -rf $(TF_ZIP)
+	cd module && zip -r ../$(TF_ZIP) .
+	zip -g $(TF_ZIP) $(LAMBDA_ZIP)
+
+$(LAMBDA_ZIP): requirements.txt src/*
 	rm -rf lambda.zip
 	python3 -m venv $(BUILD_VENV); \
 	$(BUILD_VENV)/bin/pip install -r requirements.txt
 	cd $(BUILD_VENV)/lib/python*/site-packages; \
-	zip -r ../../../../$(ZIP_NAME) .
-	cd src && zip -g ../$(ZIP_NAME) *
+	zip -r ../../../../$(LAMBDA_ZIP) .
+	cd src && zip -g ../$(LAMBDA_ZIP) *
 	rm -rf $(BUILD_VENV)
 
 lint: $(VENV)/bin/activate
@@ -30,4 +36,4 @@ venv: $(VENV)/bin/activate
 clean:
 	rm -rf $(VENV)
 	rm -rf $(BUILD_VENV)
-	rm -rf $(ZIP_NAME)
+	rm -rf $(LAMBDA_ZIP)
