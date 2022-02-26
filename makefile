@@ -25,7 +25,7 @@ $(LAMBDA_ZIP): requirements.txt src/*
 lint: venv
 	$(PYTHON) -m black src/
 	$(TF) fmt -recursive module
-	$(TF) fmt -recursive example
+	$(TF) fmt -recursive examples
 
 venv: $(VENV)/bin/activate
 	@echo "-----\nRun: \n source $(VENV)/bin/activate"
@@ -37,7 +37,7 @@ $(VENV)/bin/activate: requirements.txt requirements.dev.txt
 
 check: venv
 	$(TF) fmt -recursive -check module
-	$(TF) fmt -recursive -check example
+	$(TF) fmt -recursive -check examples
 	$(PYTHON) -m black --check src/
 
 clean:
