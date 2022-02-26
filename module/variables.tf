@@ -45,6 +45,8 @@ variable "kafka_sg_ids" {
   default     = []
 }
 
+# MTLS variables
+
 variable "kafka_certificate_secret_arn" {
   type        = string
   description = "The arn of the secret containing the client certificate"
@@ -54,5 +56,12 @@ variable "kafka_certificate_secret_arn" {
 variable "kafka_ca_secret_arn" {
   type        = string
   description = "The arn of the secret containing the ca certificate in PEM format"
+  default     = ""
+}
+
+# BASIC AUTH variables
+variable "kafka_basic_auth_secret_arn" {
+  type        = string
+  description = "The arn of the secret containing the username and password"
   default     = ""
 }
