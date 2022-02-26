@@ -1,5 +1,5 @@
-module "name" {
-  source = "github.com/andrewinci/lambda-kafka2sqs/module"
+module "lambda_to_sqs" {
+  source = "https://github.com/andrewinci/lambda-kafka2sqs/releases/download/v1.0.1/module.zip"
   kafka_topic = "example"
   kafka_endpoints = "kafka1.example.com:9092,kafka2.example.com:9092"
   kafka_subnet_ids = ["subnet1"]
