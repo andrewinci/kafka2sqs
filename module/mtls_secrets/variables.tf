@@ -1,4 +1,4 @@
-variable "user_certficate_secret_name" {
+variable "user_certificate_secret_name" {
   type        = string
   default     = "kafka_user_certificate"
   description = "Name of the secretsmanager certificate"

@@ -36,8 +36,8 @@ No modules.
 | <a name="input_ca_certificate_secret_name"></a> [ca\_certificate\_secret\_name](#input\_ca\_certificate\_secret\_name) | Name of the secretsmanager certificate | `string` | `"kafka_ca_certificate"` | no |
 | <a name="input_private_key"></a> [private\_key](#input\_private\_key) | PEM PKCS8 private key | `string` | n/a | yes |
 | <a name="input_private_key_password"></a> [private\_key\_password](#input\_private\_key\_password) | todo: support | `string` | `""` | no |
-| <a name="input_user_certficate_secret_name"></a> [user\_certficate\_secret\_name](#input\_user\_certficate\_secret\_name) | Name of the secretsmanager certificate | `string` | `"kafka_user_certificate"` | no |
 | <a name="input_user_certificate"></a> [user\_certificate](#input\_user\_certificate) | PEM encoded user certificate | `string` | n/a | yes |
+| <a name="input_user_certificate_secret_name"></a> [user\_certificate\_secret\_name](#input\_user\_certificate\_secret\_name) | Name of the secretsmanager certificate | `string` | `"kafka_user_certificate"` | no |
 
 ## Outputs
 
