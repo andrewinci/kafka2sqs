@@ -34,7 +34,7 @@ module "lambda_to_sqs" {
     },
     {
       topic_name = "test-2"
-      is_avro    = true
+      is_avro    = false
     }
   ]
 }

@@ -93,7 +93,7 @@ make lint
 
 Run tests and check the lint with
 ```bash
-make check
+make && make check
 ```
 
 Clean up with
