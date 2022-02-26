@@ -1,39 +1,42 @@
-from src.main import Handler, RawRecord
+from src.main import parse_topic_configuration
+from src.handler import Handler, RawRecord
 import pytest
 
 
 def test_parse_topic_configuration_happy_path():
     raw_test_config = """[{"is_avro":true,"topic_name":"test"},{"is_avro":false,"topic_name":"test-2"}]"""
-    sut = Handler(raw_test_config)
-    assert sut.topic_configuration == {"test": True, "test-2": False}
+    res = parse_topic_configuration(raw_test_config)
+    assert res == {"test": True, "test-2": False}
 
 
 def test_parse_topic_configuration_raise_if_duplicate_topic():
     raw_test_config = """[{"is_avro":true,"topic_name":"test"},{"is_avro":false,"topic_name":"test"}]"""
     try:
-        Handler(raw_test_config)
+        parse_topic_configuration(raw_test_config)
     except:
         return
     assert False
 
+
 @pytest.mark.asyncio
 async def test_handler():
-    sut = Handler("[]")
+    sut = Handler({})
     result = await sut.handle(event)
     assert result
 
 
 def test_extract_records():
-    sut = Handler("[]")
+    sut = Handler({})
     records = sut.extract_records(event)
     assert len(records) == 2
     assert records[0].topic == "test"
     assert records[1].timestamp == 1645867668847
 
+
 @pytest.mark.asyncio
 async def test_decode_string_record():
     rawRecord = RawRecord("topic", "dGVzdC1rZXk=", "dGVzdC12YWx1ZQ==", 123, {})
-    sut = Handler("""[{"topic_name": "topic", "is_avro": false}]""")
+    sut = Handler({"topic": False})
     record = await sut.deserialize_record(rawRecord)
     assert record.key == "test-key"
     assert record.value == "test-value"
