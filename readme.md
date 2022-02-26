@@ -23,4 +23,3 @@ Lint the code with
 ```bash
 make lint
 ```
-
