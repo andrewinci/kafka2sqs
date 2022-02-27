@@ -1,8 +1,14 @@
+# Python
 .kafka2sqs
 .build_venv
-lambda.zip
+__pycache__
+.pytest_cache
+
+# Terraform
 .terraform*
 terraform.tfstate*
-module.zip
-__pycache__
 test.tfvars
+
+# Artifacts
+module.zip
+lambda.zip

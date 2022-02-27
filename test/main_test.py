@@ -1,4 +1,4 @@
-from src.main import Handler, RawRecord, parse_topic_configuration
+from kafka2sqs.main import Handler, RawRecord, parse_topic_configuration
 import pytest
 
 
