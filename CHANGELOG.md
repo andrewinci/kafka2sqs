@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.10.0...v1.10.1) (2022-02-27)
+
+
+### Bug Fixes
+
+* Return record after deserialization ([c5b68c4](https://github.com/andrewinci/lambda-kafka2sqs/commit/c5b68c462c9f5e1d192a4c49c908aa8956019264))
+
 # [1.10.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.9.0...v1.10.0) (2022-02-27)
 
 
