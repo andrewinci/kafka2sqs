@@ -1,7 +1,7 @@
 locals {
   auth_type = lookup({
     SASL = "BASIC_AUTH"
-    MTLS  = "CLIENT_CERTIFICATE_TLS_AUTH"
+    MTLS = "CLIENT_CERTIFICATE_TLS_AUTH"
   }, var.kafka_authentication_type, "")
   source_access_configuration = concat(
     [for s in var.kafka_subnet_ids : { type = "VPC_SUBNET", uri = "subnet:${s}" }],

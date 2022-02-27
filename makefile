@@ -1,8 +1,8 @@
 TF=terraform
-VENV=kafka2sqs
+VENV=.kafka2sqs
 PYTHON = $(VENV)/bin/python3
 PIP = $(VENV)/bin/pip
-BUILD_VENV=build_venv
+BUILD_VENV=.build_venv
 LAMBDA_ZIP=lambda.zip
 TF_ZIP=module.zip
 
