@@ -23,7 +23,7 @@ $(LAMBDA_ZIP): requirements.txt $(PY_SRC)/* $(BUILD_VENV)/bin/activate
 	zip -r $(LAMBDA_ZIP) $(PY_SRC)
 
 lint: venv
-	$(PYTHON) -m black $(PY_SRC)/ $(PY_TESTS)/
+	$(VENV)/bin/python -m black $(PY_SRC)/ $(PY_TESTS)/
 	$(TF) fmt -recursive module
 	$(TF) fmt -recursive examples
 
@@ -33,10 +33,10 @@ check: venv test
 	$(TF) fmt -recursive -check; \
 	$(TF) validate
 	$(TF) fmt -recursive -check examples
-	$(PYTHON) -m black --check $(PY_SRC)
+	$(VENV)/bin/python -m black --check $(PY_SRC)
 
-test:
-	$(PYTHON) -m pytest tests --asyncio-mode=strict
+test: venv
+	$(VENV)/bin/python -m pytest tests --asyncio-mode=strict
 
 $(BUILD_VENV)/bin/activate: requirements.txt
 	$(PYTHON) -m venv $(BUILD_VENV); \
@@ -49,7 +49,7 @@ $(VENV)/bin/activate: requirements.txt requirements.dev.txt
 	$(VENV)/bin/pip install -r requirements.dev.txt
 	$(VENV)/bin/pip install -r requirements.txt
 
-clean:
+clean: venv
 	@echo Remove all generated zip files
 	find . | grep .zip | xargs rm -rf
 	@echo Remove python cache files
