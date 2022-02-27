@@ -5,6 +5,7 @@ PIP = $(VENV)/bin/pip
 BUILD_VENV=.build_venv
 LAMBDA_ZIP=lambda.zip
 TF_ZIP=module.zip
+SRC=kafka2sqs
 
 .PHONY: clean test
 
@@ -12,7 +13,7 @@ $(TF_ZIP): module/lambda/$(LAMBDA_ZIP) module/*
 	rm -rf $(TF_ZIP)
 	cd module && zip -r ../$(TF_ZIP) *
 
-module/lambda/$(LAMBDA_ZIP): requirements.txt src/*
+module/lambda/$(LAMBDA_ZIP): requirements.txt $(SRC)/*
 	@echo "Cleanup previous artifacts if any"
 	rm -rf $(BUILD_VENV)
 	rm -rf  module/lambda/$(LAMBDA_ZIP)
@@ -24,14 +25,14 @@ module/lambda/$(LAMBDA_ZIP): requirements.txt src/*
 	rm -rf pip* setup* pkg_* _distutils_hack; \
 	zip -r ../../../../$(LAMBDA_ZIP) .
 	@echo "Remove pycache"
-	cd src && rm -rf __pycache__
+	cd $(SRC) && rm -rf __pycache__
 	@echo "Add the handler"
-	cd src && zip -g ../$(LAMBDA_ZIP) *
+	zip -r $(LAMBDA_ZIP) $(SRC)
 	@echo "Move the lambda into the tf module"
 	mv $(LAMBDA_ZIP) module/lambda/
 
 lint: venv
-	$(PYTHON) -m black src/ test/
+	$(PYTHON) -m black $(SRC)/ test/
 	$(TF) fmt -recursive module
 	$(TF) fmt -recursive examples
 
@@ -49,10 +50,10 @@ check: venv test
 	$(TF) fmt -recursive -check; \
 	$(TF) validate
 	$(TF) fmt -recursive -check examples
-	$(PYTHON) -m black --check src/
+	$(PYTHON) -m black --check $(SRC)/
 
 test:
-	$(PYTHON) -m pytest test --asyncio-mode=strict
+	$(PYTHON) -m pytest tests --asyncio-mode=strict
 
 clean:
 	rm -rf $(VENV) \

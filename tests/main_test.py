@@ -1,4 +1,5 @@
-from kafka2sqs.main import Handler, RawRecord, parse_topic_configuration
+from kafka2sqs.main import parse_topic_configuration
+from kafka2sqs.handler import Handler, RawRecord
 import pytest
 
 
@@ -54,7 +55,7 @@ event = {
                 "timestampType": "CREATE_TIME",
                 "key": "dGVzdC1rZXk=",
                 "value": "dGVzdC12YWx1ZQ==",
-                "headers": [],
+                "headers": []
             }
         ],
         "test-1": [
@@ -66,8 +67,8 @@ event = {
                 "timestampType": "CREATE_TIME",
                 "key": "dGVzdC1rZXk=",
                 "value": "dGVzdC12YWx1ZQ==",
-                "headers": [],
+                "headers": []
             }
-        ],
-    },
+        ]
+    }
 }
