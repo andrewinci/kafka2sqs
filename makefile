@@ -54,12 +54,12 @@ docs: $(VENV)/bin/terraform-docs
 	$(VENV)/bin/terraform-docs -c module/.terraform-docs.yml module/sasl_secrets > module/sasl_secrets/readme.md
 	$(VENV)/bin/terraform-docs -c module/.terraform-docs.yml module/mtls_secrets > module/mtls_secrets/readme.md
 
-$(VENV)/bin/terraform-docs:
-	curl -sSLo ./terraform-docs.tar.gz https://terraform-docs.io/dl/v0.16.0/terraform-docs-v0.16.0-$(shell uname -s)-amd64.tar.gz
-	tar xzf terraform-docs.tar.gz
+$(VENV)/bin/terraform-docs: venv
+	cd /tmp/; \
+	curl -sSLo ./terraform-docs.tar.gz https://terraform-docs.io/dl/v0.16.0/terraform-docs-v0.16.0-$(shell uname -s)-amd64.tar.gz; \
+	tar xzf terraform-docs.tar.gz; \
 	chmod +x terraform-docs
-	mv terraform-docs $(VENV)/bin/terraform-docs
-	rm -rf terraform-docs.tar.gz
+	mv /tmp/terraform-docs $(VENV)/bin/terraform-docs
 
 clean: venv
 	@echo Remove all generated zip files
