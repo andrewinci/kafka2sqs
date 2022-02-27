@@ -36,7 +36,7 @@ check: venv test
 	$(VENV)/bin/python -m black --check $(PY_SRC)
 
 test: venv
-	$(VENV)/bin/python -m pytest tests --asyncio-mode=strict
+	$(VENV)/bin/python -m pytest --cov=kafka2sqs tests --asyncio-mode=strict
 
 $(BUILD_VENV)/bin/activate: requirements.txt
 	$(PYTHON) -m venv $(BUILD_VENV); \

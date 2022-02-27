@@ -3,6 +3,7 @@
 .build_venv
 __pycache__
 .pytest_cache
+.coverage
 
 # Terraform
 .terraform*
