@@ -43,7 +43,7 @@ async def test_happy_path():
             return record
 
     class MockAwsHelper:
-        async def send_to_sqs(self, record):
+        def send_to_sqs(self, record):
             sqs.append(record)
 
     sut = Handler(raw_test_config, MockSerializer(), MockAwsHelper(), logging)
@@ -64,7 +64,7 @@ async def test_serialization_error_path():
             raise Exception("Serialization error")
 
     class MockAwsHelper:
-        async def send_to_dlq(self, record):
+        def send_to_dlq(self, record):
             dlq.append(record)
 
     sut = Handler(raw_test_config, MockSerializer(), MockAwsHelper(), logging)
@@ -84,7 +84,7 @@ async def test_use_dlq_for_uncofigured_topics_path():
             raise Exception("Serialization error")
 
     class MockAwsHelper:
-        async def send_to_dlq(self, record):
+        def send_to_dlq(self, record):
             dlq.append(record)
 
     sut = Handler(raw_test_config, MockSerializer(), MockAwsHelper(), logging)

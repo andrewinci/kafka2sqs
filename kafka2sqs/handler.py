@@ -48,10 +48,9 @@ class Handler:
                         f"Missing configuration for topic {record['topic']}"
                     )
                 parsed = await self.serializer.deserialize(record, is_avro)
-                await self.aws_helper.send_to_sqs(parsed)
+                self.aws_helper.send_to_sqs(parsed)
             except Exception as e:
                 self.log.warning(f"Unable to process the record {e}")
                 # add exception to the record
-                record["process_exception"] = e
-                # todo: replace below with send to dlq
-                await self.aws_helper.send_to_dlq(record)
+                record["process_exception"] = str(e)
+                self.aws_helper.send_to_dlq(record)
