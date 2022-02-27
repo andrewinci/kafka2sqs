@@ -56,7 +56,9 @@ test:
 	$(PYTHON) -m pytest tests --asyncio-mode=strict
 
 clean:
-	rm -rf $(VENV) \
-		$(BUILD_VENV) \
-		module/lambda/$(LAMBDA_ZIP) \
-		$(TF_ZIP)
+	@echo Remove all generated zip files
+	find . | grep .zip | xargs rm -rf
+	@echo Remove python cache files
+	python -m pyclean kafka2sqs tests
+	@echo Remove build venv
+	rm -rf $(BUILD_VENV)
