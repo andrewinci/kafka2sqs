@@ -1,4 +1,6 @@
 locals {
+  function_zip     = "${path.module}/lambda.zip"
+  function_handler = "kafka2sqs.main.lambda_handler"
   env_topic_config = merge(
     { TOPIC_CONFIGURATION = jsonencode(var.kafka_topics) },
     length(var.schema_registry_endpoint) > 0 ? { SCHEMA_REGISTRY_URL = var.schema_registry_endpoint } : {},
