@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.10.1...v1.11.0) (2022-02-27)
+
+
+### Features
+
+* Add sqs queues ([cb55816](https://github.com/andrewinci/lambda-kafka2sqs/commit/cb558166c72468b4b6a0ad8a11983642d4c5c3fc))
+
 ## [1.10.1](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.10.0...v1.10.1) (2022-02-27)
 
 
