@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.8.1...v1.9.0) (2022-02-27)
+
+
+### Features
+
+* Generate docs from make ([a18b8f6](https://github.com/andrewinci/lambda-kafka2sqs/commit/a18b8f6c863bad4723c908528b4a7576f2ac8e22))
+
 ## [1.8.1](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.8.0...v1.8.1) (2022-02-26)
 
 
