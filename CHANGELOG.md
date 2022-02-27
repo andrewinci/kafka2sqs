@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.9.0...v1.10.0) (2022-02-27)
+
+
+### Features
+
+* Refactor lambda code ([80dfe6c](https://github.com/andrewinci/lambda-kafka2sqs/commit/80dfe6c611a055cf9f0a51aea531f2e1ff763418))
+
 # [1.9.0](https://github.com/andrewinci/lambda-kafka2sqs/compare/v1.8.1...v1.9.0) (2022-02-27)
 
 
