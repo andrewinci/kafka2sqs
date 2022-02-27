@@ -21,11 +21,16 @@
 | <a name="input_kafka_subnet_ids"></a> [kafka\_subnet\_ids](#input\_kafka\_subnet\_ids) | List of subnets ids to use for the kafka event source | `list(string)` | `[]` | no |
 | <a name="input_kafka_topics"></a> [kafka\_topics](#input\_kafka\_topics) | Kafka topics definition | <pre>list(object({<br>    topic_name = string<br>    is_avro    = bool<br>  }))</pre> | n/a | yes |
 | <a name="input_log_group_retention_days"></a> [log\_group\_retention\_days](#input\_log\_group\_retention\_days) | Cloudwatch log group retention in days | `number` | `30` | no |
+| <a name="input_message_retention_seconds"></a> [message\_retention\_seconds](#input\_message\_retention\_seconds) | The number of seconds the SQS retains a message. Used for queue and dlq. | `number` | `1209600` | no |
+| <a name="input_queue_name"></a> [queue\_name](#input\_queue\_name) | Name of the SQS queue name | `string` | `"consumer_sqs"` | no |
 | <a name="input_schema_registry_credentials_arn"></a> [schema\_registry\_credentials\_arn](#input\_schema\_registry\_credentials\_arn) | Secret containing the username and password to connect to schema registry | `string` | `""` | no |
 | <a name="input_schema_registry_endpoint"></a> [schema\_registry\_endpoint](#input\_schema\_registry\_endpoint) | Schema registry endpoint including the protocol (i.e. https://...). | `string` | `""` | no |
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_dead_letter_queue"></a> [dead\_letter\_queue](#output\_dead\_letter\_queue) | DLQ used when the lambda is not able to parse the record. |
+| <a name="output_queue"></a> [queue](#output\_queue) | Queue output |
 ## Resources
 
 | Name | Type |
@@ -34,6 +39,9 @@ No outputs.
 | [aws_iam_role.role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role_policy.logs_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
 | [aws_iam_role_policy.secrets_getter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
+| [aws_iam_role_policy.sqs_publisher](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
 | [aws_iam_role_policy.vpc_permissions](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
 | [aws_lambda_event_source_mapping.event_source](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_event_source_mapping) | resource |
 | [aws_lambda_function.lambda](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function) | resource |
+| [aws_sqs_queue.dlq](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue) | resource |
+| [aws_sqs_queue.queue](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue) | resource |

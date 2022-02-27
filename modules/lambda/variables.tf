@@ -83,3 +83,19 @@ variable "schema_registry_credentials_arn" {
   description = "Secret containing the username and password to connect to schema registry"
   default     = ""
 }
+
+variable "queue_name" {
+  type        = string
+  description = "Name of the SQS queue name"
+  default     = "consumer_sqs"
+  validation {
+    condition     = length(var.queue_name) > 0
+    error_message = "SQS queue name \"queue_name\" must be non empty."
+  }
+}
+
+variable "message_retention_seconds" {
+  type        = number
+  description = "The number of seconds the SQS retains a message. Used for queue and dlq."
+  default     = 1209600 # 14 days
+}
