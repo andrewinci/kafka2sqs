@@ -1,5 +1,5 @@
 module "sasl_secrets" {
-  source                   = "https://github.com/andrewinci/lambda-kafka2sqs/releases/download/v1.10.0/module.zip//sasl_secrets"
+  source                   = "https://github.com/andrewinci/lambda-kafka2sqs/releases/download/v1.10.1/module.zip//sasl_secrets"
   kafka_username           = var.kafka_username
   kafka_password           = var.kafka_password
   schema_registry_username = var.schema_registry_username
@@ -7,7 +7,7 @@ module "sasl_secrets" {
 }
 
 module "lambda_to_sqs" {
-  source                          = "https://github.com/andrewinci/lambda-kafka2sqs/releases/download/v1.10.0/module.zip//lambda"
+  source                          = "https://github.com/andrewinci/lambda-kafka2sqs/releases/download/v1.10.1/module.zip//lambda"
   function_name                   = "consumer"
   kafka_endpoints                 = var.kafka_endpoints
   kafka_authentication_type       = "SASL"
