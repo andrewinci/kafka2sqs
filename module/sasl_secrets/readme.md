@@ -1,7 +1,4 @@
-# SASL secrets
-
-Create the secretsmanager resources required for to the [lambda Kafka consumer](../lambda/readme.md) in order to authenticate 
-via SASL with the kafka cluster.
+# SASL secrets for the Kafka2SQS module
 
 ## Requirements
 
@@ -9,26 +6,6 @@ via SASL with the kafka cluster.
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 3.0 |
-
-## Providers
-
-| Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 3.0 |
-
-## Modules
-
-No modules.
-
-## Resources
-
-| Name | Type |
-|------|------|
-| [aws_secretsmanager_secret.kafka_credentials](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret) | resource |
-| [aws_secretsmanager_secret.schema_registry_credentials](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret) | resource |
-| [aws_secretsmanager_secret_version.kafka_credentials](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret_version) | resource |
-| [aws_secretsmanager_secret_version.schema_registry_credentials](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret_version) | resource |
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -39,10 +16,17 @@ No modules.
 | <a name="input_schema_registry_password"></a> [schema\_registry\_password](#input\_schema\_registry\_password) | Schema registry password | `string` | n/a | yes |
 | <a name="input_schema_registry_secret_name"></a> [schema\_registry\_secret\_name](#input\_schema\_registry\_secret\_name) | Name of the secretsmanager certificate | `string` | `"schema_registry_credentials"` | no |
 | <a name="input_schema_registry_username"></a> [schema\_registry\_username](#input\_schema\_registry\_username) | Schema registry username | `string` | n/a | yes |
-
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | <a name="output_kafka_credentials_arn"></a> [kafka\_credentials\_arn](#output\_kafka\_credentials\_arn) | n/a |
 | <a name="output_schema_registry_credentials_arn"></a> [schema\_registry\_credentials\_arn](#output\_schema\_registry\_credentials\_arn) | n/a |
+## Resources
+
+| Name | Type |
+|------|------|
+| [aws_secretsmanager_secret.kafka_credentials](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret) | resource |
+| [aws_secretsmanager_secret.schema_registry_credentials](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret) | resource |
+| [aws_secretsmanager_secret_version.kafka_credentials](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret_version) | resource |
+| [aws_secretsmanager_secret_version.schema_registry_credentials](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret_version) | resource |

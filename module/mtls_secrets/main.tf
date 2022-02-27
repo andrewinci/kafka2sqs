@@ -1,3 +1,7 @@
+/**
+ * # mTLS secrets for the Kafka2SQS module
+ */
+
 resource "aws_secretsmanager_secret" "kafka_user_certificate" {
   name = var.user_certificate_secret_name
 }

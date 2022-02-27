@@ -6,6 +6,7 @@ __pycache__
 
 # Terraform
 .terraform*
+!.terraform-docs.yml
 terraform.tfstate*
 test.tfvars
 

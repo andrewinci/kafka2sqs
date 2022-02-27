@@ -85,4 +85,11 @@ Clean up with
 make clean
 ```
 
+Generate the documentation with
+```bash
+make docs
+```
+
+## Credits
+
 The documentation is generated with [terraform-docs](https://terraform-docs.io/) 

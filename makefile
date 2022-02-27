@@ -49,6 +49,18 @@ $(VENV)/bin/activate: requirements.txt requirements.dev.txt
 	$(VENV)/bin/pip install -r requirements.dev.txt
 	$(VENV)/bin/pip install -r requirements.txt
 
+docs: $(VENV)/bin/terraform-docs
+	$(VENV)/bin/terraform-docs -c module/.terraform-docs.yml module/lambda > module/lambda/readme.md
+	$(VENV)/bin/terraform-docs -c module/.terraform-docs.yml module/sasl_secrets > module/sasl_secrets/readme.md
+	$(VENV)/bin/terraform-docs -c module/.terraform-docs.yml module/mtls_secrets > module/mtls_secrets/readme.md
+
+$(VENV)/bin/terraform-docs:
+	curl -sSLo ./terraform-docs.tar.gz https://terraform-docs.io/dl/v0.16.0/terraform-docs-v0.16.0-$(shell uname -s)-amd64.tar.gz
+	tar xzf terraform-docs.tar.gz
+	chmod +x terraform-docs
+	mv terraform-docs $(VENV)/bin/terraform-docs
+	rm -rf terraform-docs.tar.gz
+
 clean: venv
 	@echo Remove all generated zip files
 	find . | grep .zip | xargs rm -rf

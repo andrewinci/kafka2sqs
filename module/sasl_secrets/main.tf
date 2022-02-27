@@ -1,3 +1,7 @@
+/**
+ * # SASL secrets for the Kafka2SQS module
+ */
+
 resource "aws_secretsmanager_secret" "kafka_credentials" {
   name = var.kafka_secret_name
 }

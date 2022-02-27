@@ -1,3 +1,8 @@
+/**
+ * # Kafka2SQS Lambda consumer
+ */
+
+
 locals {
   function_zip     = "${path.module}/lambda.zip"
   function_handler = "kafka2sqs.main.lambda_handler"
