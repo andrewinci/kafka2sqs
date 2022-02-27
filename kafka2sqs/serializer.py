@@ -39,6 +39,7 @@ class Serializer:
             raise Exception(
                 "Unable to deserialize avro. Missing schema registry configuration"
             )
+        return record
 
     def _deserialize_string(self, record: dict) -> None:
         """
