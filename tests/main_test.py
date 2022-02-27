@@ -55,7 +55,7 @@ event = {
                 "timestampType": "CREATE_TIME",
                 "key": "dGVzdC1rZXk=",
                 "value": "dGVzdC12YWx1ZQ==",
-                "headers": []
+                "headers": [],
             }
         ],
         "test-1": [
@@ -67,8 +67,8 @@ event = {
                 "timestampType": "CREATE_TIME",
                 "key": "dGVzdC1rZXk=",
                 "value": "dGVzdC12YWx1ZQ==",
-                "headers": []
+                "headers": [],
             }
-        ]
-    }
+        ],
+    },
 }

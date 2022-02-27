@@ -8,6 +8,7 @@ from schema_registry.client import AsyncSchemaRegistryClient
 RawRecord = namedtuple("RawRecord", "topic raw_key raw_value timestamp original")
 Record = namedtuple("Record", "topic key value timestamp")
 
+
 class Handler:
     def __init__(
         self,

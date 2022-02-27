@@ -14,6 +14,7 @@ SCHEMA_REGISTRY_SECRET_ARN = os.environ.get("SCHEMA_REGISTRY_SECRET_ARN")
 
 SchemaRegistryConfig = namedtuple("SchemaRegistryConfig", "endpoint username password")
 
+
 def lambda_handler(event, _):
     topic_configs = parse_topic_configuration(TOPIC_CONFIGURATION)
     schema_registry_config = retrieve_schema_registry_configs()

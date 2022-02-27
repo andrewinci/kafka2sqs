@@ -67,7 +67,7 @@ make clean && make
 
 Init the python virtualenv with
 ```bash
-make venv && source kafka2sqs/bin/activate
+make venv && source .kafka2sqs/bin/activate
 ```
 
 Lint the code with
