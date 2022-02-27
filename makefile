@@ -10,9 +10,9 @@ PY_TESTS=tests
 
 .PHONY: clean test
 
-$(TF_ZIP): $(LAMBDA_ZIP) module/**
-	cp $(LAMBDA_ZIP) module/lambda/
-	cd module && zip -r ../$(TF_ZIP) *
+$(TF_ZIP): $(LAMBDA_ZIP) modules/**
+	cp $(LAMBDA_ZIP) modules/lambda/
+	cd modules && zip -r ../$(TF_ZIP) *
 
 $(LAMBDA_ZIP): requirements.txt $(PY_SRC)/* $(BUILD_VENV)/bin/activate
 	@echo "Package dependencies"
@@ -24,11 +24,11 @@ $(LAMBDA_ZIP): requirements.txt $(PY_SRC)/* $(BUILD_VENV)/bin/activate
 
 lint: venv
 	$(VENV)/bin/python -m black $(PY_SRC)/ $(PY_TESTS)/
-	$(TF) fmt -recursive module
+	$(TF) fmt -recursive modules
 	$(TF) fmt -recursive examples
 
 check: venv test
-	cd module; \
+	cd modules; \
 	$(TF) init; \
 	$(TF) fmt -recursive -check; \
 	$(TF) validate
@@ -50,9 +50,9 @@ $(VENV)/bin/activate: requirements.txt requirements.dev.txt
 	$(VENV)/bin/pip install -r requirements.txt
 
 docs: $(VENV)/bin/terraform-docs
-	$(VENV)/bin/terraform-docs -c module/.terraform-docs.yml module/lambda > module/lambda/readme.md
-	$(VENV)/bin/terraform-docs -c module/.terraform-docs.yml module/sasl_secrets > module/sasl_secrets/readme.md
-	$(VENV)/bin/terraform-docs -c module/.terraform-docs.yml module/mtls_secrets > module/mtls_secrets/readme.md
+	$(VENV)/bin/terraform-docs -c modules/.terraform-docs.yml modules/lambda > modules/lambda/readme.md
+	$(VENV)/bin/terraform-docs -c modules/.terraform-docs.yml modules/sasl_secrets > modules/sasl_secrets/readme.md
+	$(VENV)/bin/terraform-docs -c modules/.terraform-docs.yml modules/mtls_secrets > modules/mtls_secrets/readme.md
 
 $(VENV)/bin/terraform-docs: venv
 	cd /tmp/; \
