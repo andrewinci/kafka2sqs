@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/andrewinci/kafka2sqs/compare/v2.1.0...v2.1.1) (2022-02-28)
+
+
+### Bug Fixes
+
+* Type in auth type loockup ([a566b93](https://github.com/andrewinci/kafka2sqs/commit/a566b9388da540481cca829fcd18068b431baf0c))
+
 # [2.1.0](https://github.com/andrewinci/kafka2sqs/compare/v2.0.0...v2.1.0) (2022-02-28)
 
 
