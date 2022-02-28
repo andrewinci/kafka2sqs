@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/andrewinci/kafka2sqs/compare/v2.1.1...v2.2.0) (2022-02-28)
+
+
+### Features
+
+* Decode avro json ([#1](https://github.com/andrewinci/kafka2sqs/issues/1)) ([896b3f6](https://github.com/andrewinci/kafka2sqs/commit/896b3f6301460589285e6a1a3237276d38fe9e79))
+
 ## [2.1.1](https://github.com/andrewinci/kafka2sqs/compare/v2.1.0...v2.1.1) (2022-02-28)
 
 
