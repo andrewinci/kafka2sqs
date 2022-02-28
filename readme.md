@@ -1,7 +1,8 @@
-<h1 align="center">Lambda Kafka2SQS</h1>
+<h1 align="center">Kafka2SQS</h1>
 
 <p align="center">
-<a href="https://github.com/andrewinci/lambda-kafka2sqs/actions/workflows/package.yml"><img alt="Package tf module" src="https://github.com/andrewinci/lambda-kafka2sqs/actions/workflows/package.yml/badge.svg"></a>
+<a href="https://github.com/andrewinci/kafka2sqs/actions/workflows/package.yml"><img alt="Package tf module" src="https://github.com/andrewinci/kafka2sqs/actions/workflows/package.yml/badge.svg"></a>
+<a href="https://snyk.io/test/github/andrewinci/kafka2sqs"><img alt="Snyk" src="https://snyk.io/test/github/andrewinci/kafka2sqs/badge.svg"></a>
 <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 </p>
 Terraform modules to configures an AWS lambda that connects Kafka to SQS.
@@ -24,7 +25,7 @@ See module documentation [here](./modules/lambda/readme.md)
 
 ```hcl
 module "lambda_to_sqs" {
-  source                    = "https://github.com/andrewinci/lambda-kafka2sqs/releases/latest/download/module.zip//lambda"
+  source                    = "https://github.com/andrewinci/kafka2sqs/releases/latest/download/module.zip//lambda"
   function_name             = "consumer"
   kafka_endpoints           = "kafka1.example.com:9092,kafka2.example.com:9092"
   kafka_subnet_ids          = ["subnet1"]
@@ -42,7 +43,7 @@ See module documentation [here](./modules/sasl_secrets/readme.md)
 
 ```hcl
 module "sasl_secrets" {
-  source                   = "https://github.com/andrewinci/lambda-kafka2sqs/releases/latest/download/module.zip//sasl_secrets"
+  source                   = "https://github.com/andrewinci/kafka2sqs/releases/latest/download/module.zip//sasl_secrets"
   kafka_username           = "kafka_username"
   kafka_password           = "kafka_password"
   schema_registry_username = "schema_registry_username"
@@ -50,7 +51,7 @@ module "sasl_secrets" {
 }
 
 module "lambda_to_sqs" {
-  source                          = "https://github.com/andrewinci/lambda-kafka2sqs/releases/latest/download/module.zip//lambda"
+  source                          = "https://github.com/andrewinci/kafka2sqs/releases/latest/download/module.zip//lambda"
   function_name                   = "consumer"
   kafka_endpoints                 = "whatever.europe-west1.gcp.confluent.cloud:9092"
   kafka_authentication_type       = "SASL"
@@ -70,14 +71,14 @@ See module documentation [here](./modules/mtls_secrets/readme.md)
 
 ```hcl
 module "mtls_secrets" {
-  source           = "https://github.com/andrewinci/lambda-kafka2sqs/releases/latest/download/module.zip//mtls_secrets"
+  source           = "https://github.com/andrewinci/kafka2sqs/releases/latest/download/module.zip//mtls_secrets"
   user_certificate = "<PEM encoded certificate>"
   private_key      = "<PEM PKCS8 private key>"
   ca_certificate   = "<PEM encoded certificate>"
 }
 
 module "lambda_to_sqs" {
-  source                    = "https://github.com/andrewinci/lambda-kafka2sqs/releases/latest/download/module.zip//lambda"
+  source                    = "https://github.com/andrewinci/kafka2sqs/releases/latest/download/module.zip//lambda"
   function_name             = "consumer"
   kafka_endpoints           = "kafka1.example.com:9092,kafka2.example.com:9092"
   kafka_subnet_ids          = ["subnet1"]

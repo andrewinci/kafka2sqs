@@ -1,5 +1,5 @@
 module "sasl_secrets" {
-  source                   = "https://github.com/andrewinci/lambda-kafka2sqs/releases/download/v1.10.1/module.zip//sasl_secrets"
+  source                   = "https://github.com/andrewinci/kafka2sqs/releases/download/v1.10.1/module.zip//sasl_secrets"
   kafka_username           = var.kafka_username
   kafka_password           = var.kafka_password
   schema_registry_username = var.schema_registry_username
