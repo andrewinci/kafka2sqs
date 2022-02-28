@@ -17,7 +17,7 @@ async def test_custom_serializer_happy_path():
     # Act
     res = await sut.decode_message(bin_message)
     # Assert
-    assert res == {"Age": 123, "Name": "name"}
+    assert res == '{"Name": "name", "Age": 123}'
 
 
 schema = """{"type":"record","name":"Employee","namespace":"Tutorialspoint","fields":[{"name":"Name","type":"string"},{"name":"Age","type":"int"}]}"""

@@ -24,14 +24,15 @@ class AsyncAvroJsonMessageSerializer(AsyncMessageSerializer):
         return lambda record, fp: schemaless_writer(fp, schema.schema, record)  # type: ignore
 
     def _decoder_func(self, payload, schema):
-        record = schemaless_reader(payload, schema, self.reader_schema, self.return_record_name)
-        out = io.BytesIO()
+        record = schemaless_reader(
+            payload, schema, self.reader_schema, self.return_record_name
+        )
+        out = io.StringIO()
         json_writer(out, schema, [record])
-        wrapper = io.TextIOWrapper(out, encoding='utf-8')
-        return wrapper.read()
+        return out.getvalue()
 
     def _get_decoder_func(self, payload, writer_schema: BaseSchema) -> typing.Callable:
-        return lambda payload: self._decoder_func( payload, writer_schema.schema)
+        return lambda payload: self._decoder_func(payload, writer_schema.schema)
 
 
 class Serializer:
