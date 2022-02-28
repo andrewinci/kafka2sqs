@@ -2,8 +2,7 @@ import logging
 from unittest.mock import Mock
 import os
 import pytest
-from kafka2sqs.serializer import Serializer
-from schema_registry.serializers import AsyncAvroMessageSerializer
+from kafka2sqs.serializer import Serializer, AsyncAvroJsonMessageSerializer
 from schema_registry.client.schema import AvroSchema
 
 
@@ -45,7 +44,7 @@ async def test_decode_avro_happy_path():
         async def get_by_id(self, _):
             return AvroSchema(schema)
 
-    sut.avro_serializer = AsyncAvroMessageSerializer(MockSchemaRegistry())
+    sut.avro_serializer = AsyncAvroJsonMessageSerializer(MockSchemaRegistry())
     # Act
     await sut.deserialize(record, True)
     # Assert
@@ -53,7 +52,7 @@ async def test_decode_avro_happy_path():
         "key": "dGVzdC1rZXk=",
         "value": "AAABhrwIbmFtZfYB",
         "parsed_key": "test-key",
-        "parsed_value": {"Age": 123, "Name": "name"},
+        "parsed_value": '{"Name": "name", "Age": 123}',
     }
 
 
