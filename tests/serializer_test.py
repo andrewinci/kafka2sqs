@@ -3,6 +3,8 @@ from unittest.mock import Mock
 import os
 import pytest
 from kafka2sqs.serializer import Serializer
+from schema_registry.serializers import AsyncAvroMessageSerializer
+from schema_registry.client.schema import AvroSchema
 
 
 def test_warn_if_missing_avro_config():
@@ -29,9 +31,35 @@ async def test_decode_string_happy_path():
     }
 
 
+@pytest.mark.asyncio
+async def test_decode_avro_happy_path():
+    # Arrange
+    sut = Serializer("", "-", logging)
+    schema = """{"type":"record","name":"Employee","namespace":"Tutorialspoint","fields":[{"name":"Name","type":"string"},{"name":"Age","type":"int"}]}"""
+    record = {
+        "key": "dGVzdC1rZXk=",
+        "value": "AAABhrwIbmFtZfYB",
+    }
+
+    class MockSchemaRegistry:
+        async def get_by_id(self, _):
+            return AvroSchema(schema)
+
+    sut.avro_serializer = AsyncAvroMessageSerializer(MockSchemaRegistry())
+    # Act
+    await sut.deserialize(record, True)
+    # Assert
+    assert record == {
+        "key": "dGVzdC1rZXk=",
+        "value": "AAABhrwIbmFtZfYB",
+        "parsed_key": "test-key",
+        "parsed_value": {"Age": 123, "Name": "name"},
+    }
+
+
 # Need schema registry configs in env to run this
 # @pytest.mark.asyncio
-# async def test_decode_avro_happy_path():
+# async def test_decode_avro_happy_path_2():
 #     endpoint = os.environ.get("SCHEMA_REGISTRY_URL")
 #     credentials = {
 #         "username": os.environ.get("SCHEMA_REGISTRY_USERNAME"),
