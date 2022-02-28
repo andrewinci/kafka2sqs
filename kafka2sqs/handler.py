@@ -3,7 +3,7 @@ import logging
 from signal import raise_signal
 
 from .aws import AWSHelper
-from .serializer import Serializer
+from .serializer import PARSED_KEY_FIELD_NAME, PARSED_VALUE_FIELD_NAME, Serializer
 
 
 class Handler:
@@ -53,4 +53,6 @@ class Handler:
                 self.log.warning(f"Unable to process the record {e}")
                 # add exception to the record
                 record["process_exception"] = str(e)
+                record.pop(PARSED_KEY_FIELD_NAME, None)
+                record.pop(PARSED_VALUE_FIELD_NAME, None)
                 self.aws_helper.send_to_dlq(record)

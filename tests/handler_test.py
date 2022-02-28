@@ -6,6 +6,8 @@ from kafka2sqs.handler import Handler
 import pytest
 from unittest.mock import Mock
 
+from kafka2sqs.serializer import PARSED_VALUE_FIELD_NAME
+
 
 def test_invalid_topic_config():
     try:
@@ -61,6 +63,7 @@ async def test_serialization_error_path():
 
     class MockSerializer:
         async def deserialize(self, record: dict, is_avro: bool):
+            record[PARSED_VALUE_FIELD_NAME] = "partially_parsed"
             raise Exception("Serialization error")
 
     class MockAwsHelper:
@@ -72,6 +75,7 @@ async def test_serialization_error_path():
     await sut.handle(event)
     # Assert
     assert len(dlq) == 2
+    assert len([r for r in dlq if r.get(PARSED_VALUE_FIELD_NAME)]) == 0
 
 
 @pytest.mark.asyncio

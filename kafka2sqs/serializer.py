@@ -1,6 +1,5 @@
 import base64
 import logging
-import typing
 from schema_registry.serializers import AsyncAvroMessageSerializer
 from schema_registry.client import AsyncSchemaRegistryClient
 
