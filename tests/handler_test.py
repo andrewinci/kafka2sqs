@@ -1,10 +1,8 @@
-import asyncio
 import logging
 from signal import raise_signal
 from pytest import fail
 from kafka2sqs.handler import Handler
 import pytest
-from unittest.mock import Mock
 
 from kafka2sqs.serializer import PARSED_VALUE_FIELD_NAME
 
