@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/andrewinci/kafka2sqs/compare/v2.0.0...v2.1.0) (2022-02-28)
+
+
+### Features
+
+* Create schema registry secrets in the mTLS module ([ed9a749](https://github.com/andrewinci/kafka2sqs/commit/ed9a749c0c2bbbb27395a68013d0d7644d4dd113))
+
 # [2.0.0](https://github.com/andrewinci/kafka2sqs/compare/v1.10.1...v2.0.0) (2022-02-28)
 
 
