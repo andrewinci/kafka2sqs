@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/andrewinci/kafka2sqs/compare/v1.10.1...v2.0.0) (2022-02-28)
+
+
+### Features
+
+* Add sqs queues ([81f427c](https://github.com/andrewinci/kafka2sqs/commit/81f427c9d205ee0d6ace47c55d0b82fb6f12ec84))
+* Add VPC configuration for the lambda ([706e4cf](https://github.com/andrewinci/kafka2sqs/commit/706e4cffd259d29f7bd9e664db8da776c873b182))
+* Forward parsed records to SQS ([816c427](https://github.com/andrewinci/kafka2sqs/commit/816c427165460a5fccc3f04cfb02b4175fcdbb16))
+
+
+### BREAKING CHANGES
+
+* Move Kafka VPC config into a single variabe
+
 ## [1.10.1](https://github.com/andrewinci/kafka2sqs/compare/v1.10.0...v1.10.1) (2022-02-27)
 
 
