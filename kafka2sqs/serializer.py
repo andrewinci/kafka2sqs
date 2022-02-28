@@ -1,15 +1,38 @@
 import base64
 import logging
 import typing
-from schema_registry.serializers import AsyncAvroMessageSerializer
-from schema_registry.client import AsyncSchemaRegistryClient
-
-from kafka2sqs.aws import AWSHelper
+import logging
+import typing
+import io
+from fastavro import schemaless_reader, schemaless_writer, json_writer
+from schema_registry.client import AsyncSchemaRegistryClient, utils
+from schema_registry.client.schema import BaseSchema
+from schema_registry.serializers import AsyncMessageSerializer
 
 KEY_FIELD_NAME = "key"
 PARSED_KEY_FIELD_NAME = "parsed_key"
 VALUE_FIELD_NAME = "value"
 PARSED_VALUE_FIELD_NAME = "parsed_value"
+
+
+class AsyncAvroJsonMessageSerializer(AsyncMessageSerializer):
+    @property
+    def _serializer_schema_type(self) -> str:
+        return utils.AVRO_SCHEMA_TYPE
+
+    def _get_encoder_func(self, schema: BaseSchema) -> typing.Callable:
+        return lambda record, fp: schemaless_writer(fp, schema.schema, record)  # type: ignore
+
+    def _decoder_func(self, payload, schema):
+        record = schemaless_reader(
+            payload, schema, self.reader_schema, self.return_record_name
+        )
+        out = io.StringIO()
+        json_writer(out, schema, [record])
+        return out.getvalue()
+
+    def _get_decoder_func(self, payload, writer_schema: BaseSchema) -> typing.Callable:
+        return lambda payload: self._decoder_func(payload, writer_schema.schema)
 
 
 class Serializer:
@@ -66,7 +89,7 @@ class Serializer:
 
     def _build_avro_serializer(
         self, schema_registry_endpoint: str, credentials: dict
-    ) -> AsyncAvroMessageSerializer:
+    ) -> AsyncAvroJsonMessageSerializer:
         """
         Build an avro serializer that use the schema registry
         to retrieve the schema.
@@ -77,7 +100,7 @@ class Serializer:
             schema_registry_client = AsyncSchemaRegistryClient(
                 {"url": schema_registry_endpoint}
             )
-            return AsyncAvroMessageSerializer(schema_registry_client)
+            return AsyncAvroJsonMessageSerializer(schema_registry_client)
         else:
             client_configs = {
                 "url": schema_registry_endpoint,
@@ -85,4 +108,4 @@ class Serializer:
                 "basic.auth.user.info": f'{ credentials["username"] }:{ credentials["password"] }',
             }
             schema_registry_client = AsyncSchemaRegistryClient(client_configs)
-            return AsyncAvroMessageSerializer(schema_registry_client)
+            return AsyncAvroJsonMessageSerializer(schema_registry_client)
