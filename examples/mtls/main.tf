@@ -1,5 +1,5 @@
 module "mtls_secrets" {
-  source                   = "https://github.com/andrewinci/kafka2sqs/releases/download/v2.1.1/module.zip//mtls_secrets"
+  source                   = "https://github.com/andrewinci/kafka2sqs/releases/download/v2.2.0/module.zip//mtls_secrets"
   user_certificate         = var.kafka_certificate
   private_key              = var.kafka_private_key
   ca_certificate           = var.kafka_ca_certificate
@@ -8,7 +8,7 @@ module "mtls_secrets" {
 }
 
 module "lambda_to_sqs" {
-  source                          = "https://github.com/andrewinci/kafka2sqs/releases/download/v2.1.1/module.zip//lambda"
+  source                          = "https://github.com/andrewinci/kafka2sqs/releases/download/v2.2.0/module.zip//lambda"
   function_name                   = "consumer"
   kafka_endpoints                 = var.kafka_endpoints
   kafka_authentication_type       = "mTLS"
