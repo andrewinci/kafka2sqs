@@ -17,7 +17,7 @@ locals {
 
 resource "aws_lambda_function" "lambda" {
   function_name    = var.function_name
-  role             = aws_iam_role.role.arn
+  role             = aws_iam_role.consumer.arn
   handler          = local.function_handler
   filename         = local.function_zip
   source_code_hash = filesha256(local.function_zip)

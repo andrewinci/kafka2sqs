@@ -1,5 +1,5 @@
-resource "aws_iam_role" "role" {
-  name               = "consumer_lambda_role"
+resource "aws_iam_role" "consumer" {
+  name               = var.function_name
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -17,7 +17,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "logs_policy" {
-  role   = aws_iam_role.role.id
+  role   = aws_iam_role.consumer.id
   policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -36,7 +36,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "vpc_permissions" {
-  role   = aws_iam_role.role.id
+  role   = aws_iam_role.consumer.id
   policy = <<EOF
 {
    "Version": "2012-10-17",
@@ -59,7 +59,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "secrets_getter" {
-  role   = aws_iam_role.role.id
+  role   = aws_iam_role.consumer.id
   policy = <<EOF
 {
    "Version": "2012-10-17",
@@ -78,7 +78,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "sqs_publisher" {
-  role   = aws_iam_role.role.id
+  role   = aws_iam_role.consumer.id
   policy = <<EOF
 {
    "Version": "2012-10-17",
