@@ -39,3 +39,19 @@ variable "ca_certificate" {
   default     = ""
   description = "PEM encoded CA certificate"
 }
+
+variable "schema_registry_secret_name" {
+  type        = string
+  default     = "schema_registry_credentials"
+  description = "Name of the secretsmanager certificate"
+}
+
+variable "schema_registry_username" {
+  type        = string
+  description = "Schema registry username"
+}
+
+variable "schema_registry_password" {
+  type        = string
+  description = "Schema registry password"
+}
