@@ -4,6 +4,19 @@ variable "function_name" {
   description = "Lambda function name"
 }
 
+variable "function_vpc_config" {
+  type = object({
+    subnet_ids         = list(string)
+    security_group_ids = list(string)
+  })
+  default     = { subnet_ids = [], security_group_ids = [] }
+  description = "VPC configuration for the lambda"
+  validation {
+    condition     = var.function_vpc_config != null
+    error_message = "The `function_vpc_config` can't be null. Use the default value instead."
+  }
+}
+
 variable "log_group_retention_days" {
   type        = number
   default     = 30
@@ -39,16 +52,17 @@ variable "kafka_endpoints" {
   description = "Comma separated kafka endpoints <ip>:<port>"
 }
 
-variable "kafka_subnet_ids" {
-  type        = list(string)
-  description = "List of subnets ids to use for the kafka event source"
-  default     = []
-}
-
-variable "kafka_sg_ids" {
-  type        = list(string)
-  description = "List of security group id to access kafka"
-  default     = []
+variable "kafka_vpc_config" {
+  type = object({
+    subnet_ids         = list(string)
+    security_group_ids = list(string)
+  })
+  default     = { subnet_ids = [], security_group_ids = [] }
+  description = "VPC configuration for the kafka event source"
+  validation {
+    condition     = var.kafka_vpc_config != null
+    error_message = "The `kafka_vpc_config` can't be null. Use the default value instead."
+  }
 }
 
 variable "kafka_authentication_type" {

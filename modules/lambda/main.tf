@@ -12,6 +12,7 @@ locals {
     length(var.schema_registry_endpoint) > 0 ? { SCHEMA_REGISTRY_URL = var.schema_registry_endpoint } : {},
     length(var.schema_registry_credentials_arn) > 0 ? { SCHEMA_REGISTRY_SECRET_ARN = var.schema_registry_credentials_arn } : {}
   )
+  vpc_configured = length(var.function_vpc_config.subnet_ids) > 0 ? ["one"] : []
 }
 
 resource "aws_lambda_function" "lambda" {
@@ -25,6 +26,14 @@ resource "aws_lambda_function" "lambda" {
 
   environment {
     variables = local.env_topic_config
+  }
+
+  dynamic "vpc_config" {
+    for_each = local.vpc_configured
+    content {
+      subnet_ids         = var.function_vpc_config.subnet_ids
+      security_group_ids = var.function_vpc_config.security_group_ids
+    }
   }
 
   depends_on = [

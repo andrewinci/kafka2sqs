@@ -4,8 +4,8 @@ locals {
     MTLS = "CLIENT_CERTIFICATE_TLS_AUTH"
   }, var.kafka_authentication_type, "")
   source_access_configuration = concat(
-    [for s in var.kafka_subnet_ids : { type = "VPC_SUBNET", uri = "subnet:${s}" }],
-    [for s in var.kafka_sg_ids : { type = "VPC_SECURITY_GROUP", uri = "security_group:${s}" }],
+    [for s in var.kafka_vpc_config.subnet_ids : { type = "VPC_SUBNET", uri = "subnet:${s}" }],
+    [for s in var.kafka_vpc_config.security_group_ids : { type = "VPC_SECURITY_GROUP", uri = "security_group:${s}" }],
     [{ type = local.auth_type, uri = var.kafka_credentials_arn }],
     length(var.kafka_ca_secret_arn) > 0 ? [{ type = "SERVER_ROOT_CA_CERTIFICATE", uri = var.kafka_ca_secret_arn }] : []
   )

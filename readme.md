@@ -18,6 +18,7 @@ Any process error is attached to the original event as well before it is sent to
 - Support for Avro and Schema Registry
 - DLQ for poisoned pills and parsing errors
 - Helper modules to easily configure the kafka credentials
+- Support deploy lambda in a VPC subnet
 
 ## Basic lambda usage
 
