@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/andrewinci/kafka2sqs/compare/v2.2.0...v2.2.1) (2022-03-01)
+
+
+### Bug Fixes
+
+* Pin AWS tf provider version ([af4c233](https://github.com/andrewinci/kafka2sqs/commit/af4c233d99903c33bb0abb11b1bd06731978513a))
+
 # [2.2.0](https://github.com/andrewinci/kafka2sqs/compare/v2.1.1...v2.2.0) (2022-02-28)
 
 
