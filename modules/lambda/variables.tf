@@ -1,3 +1,5 @@
+## Lambda variables
+
 variable "function_name" {
   type        = string
   default     = "kafka-consumer"
@@ -28,6 +30,8 @@ variable "log_group_retention_days" {
   default     = 30
   description = "Cloudwatch log group retention in days"
 }
+
+## Kafka variables
 
 variable "kafka_topics" {
   type = list(object({
@@ -104,6 +108,8 @@ variable "schema_registry_credentials_arn" {
   default     = ""
 }
 
+## SQS variables
+
 variable "queue_name" {
   type        = string
   description = "Name of the SQS queue name"
@@ -118,4 +124,10 @@ variable "message_retention_seconds" {
   type        = number
   description = "The number of seconds the SQS retains a message. Used for queue and dlq."
   default     = 1209600 # 14 days
+}
+
+variable "receive_wait_time_seconds" {
+  type        = number
+  description = "SQS Long polling configureation."
+  default     = 0
 }

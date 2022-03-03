@@ -24,6 +24,7 @@
 | <a name="input_log_group_retention_days"></a> [log\_group\_retention\_days](#input\_log\_group\_retention\_days) | Cloudwatch log group retention in days | `number` | `30` | no |
 | <a name="input_message_retention_seconds"></a> [message\_retention\_seconds](#input\_message\_retention\_seconds) | The number of seconds the SQS retains a message. Used for queue and dlq. | `number` | `1209600` | no |
 | <a name="input_queue_name"></a> [queue\_name](#input\_queue\_name) | Name of the SQS queue name | `string` | `"consumer_sqs"` | no |
+| <a name="input_receive_wait_time_seconds"></a> [receive\_wait\_time\_seconds](#input\_receive\_wait\_time\_seconds) | SQS Long polling configureation. | `number` | `0` | no |
 | <a name="input_schema_registry_credentials_arn"></a> [schema\_registry\_credentials\_arn](#input\_schema\_registry\_credentials\_arn) | Secret containing the username and password to connect to schema registry | `string` | `""` | no |
 | <a name="input_schema_registry_endpoint"></a> [schema\_registry\_endpoint](#input\_schema\_registry\_endpoint) | Schema registry endpoint including the protocol (i.e. https://...). | `string` | `""` | no |
 ## Outputs
