@@ -17,6 +17,12 @@ variable "function_vpc_config" {
   }
 }
 
+variable "function_timeout" {
+  type        = number
+  default     = 60
+  description = "Lambda timeout in seconds"
+}
+
 variable "log_group_retention_days" {
   type        = number
   default     = 30

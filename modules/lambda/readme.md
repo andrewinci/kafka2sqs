@@ -11,6 +11,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_function_name"></a> [function\_name](#input\_function\_name) | Lambda function name | `string` | `"kafka-consumer"` | no |
+| <a name="input_function_timeout"></a> [function\_timeout](#input\_function\_timeout) | Lambda timeout in seconds | `number` | `60` | no |
 | <a name="input_function_vpc_config"></a> [function\_vpc\_config](#input\_function\_vpc\_config) | VPC configuration for the lambda | <pre>object({<br>    subnet_ids         = list(string)<br>    security_group_ids = list(string)<br>  })</pre> | <pre>{<br>  "security_group_ids": [],<br>  "subnet_ids": []<br>}</pre> | no |
 | <a name="input_kafka_authentication_type"></a> [kafka\_authentication\_type](#input\_kafka\_authentication\_type) | The authentication to perform to connect to kafka. Possible values are: "SASL" or "mTLS". | `string` | n/a | yes |
 | <a name="input_kafka_batch_size"></a> [kafka\_batch\_size](#input\_kafka\_batch\_size) | The largest number of records that Lambda will retrieve from each kafka topic | `number` | `10` | no |

@@ -22,6 +22,7 @@ resource "aws_lambda_function" "lambda" {
   filename         = local.function_zip
   source_code_hash = filesha256(local.function_zip)
   runtime          = "python3.9"
+  timeout          = var.function_timeout
 
 
   environment {
