@@ -1,3 +1,11 @@
+# [2.3.0](https://github.com/andrewinci/kafka2sqs/compare/v2.2.1...v2.3.0) (2022-03-03)
+
+
+### Features
+
+* Make lambda timeout configurable ([4bed369](https://github.com/andrewinci/kafka2sqs/commit/4bed369432c8deea61f86137a54a868e4fc26735))
+* Make receive_wait_time_seconds configurable ([169e613](https://github.com/andrewinci/kafka2sqs/commit/169e613d90345753fcb8b4010be2e0752e31f004))
+
 ## [2.2.1](https://github.com/andrewinci/kafka2sqs/compare/v2.2.0...v2.2.1) (2022-03-01)
 
 
