@@ -31,6 +31,26 @@ variable "log_group_retention_days" {
   description = "Cloudwatch log group retention in days"
 }
 
+variable "path_to_lambda_zip" {
+  type        = string
+  default     = "${path.module}/lambda.zip"
+  description = "Path to zip of source code for lambda"
+}
+
+
+variable "lambda_runtime" {
+  type        = string
+  default     = "python3.9"
+  description = "Runtime environment for lambda - check https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime"
+}
+
+variable  "function_handler"{
+  type        = string
+  default     = "kafka2sqs.main.lambda_handler"
+  description = "Lambda function handler"
+}
+
+
 ## Kafka variables
 
 variable "kafka_topics" {

@@ -4,8 +4,6 @@
 
 
 locals {
-  function_zip     = "${path.module}/lambda.zip"
-  function_handler = "kafka2sqs.main.lambda_handler"
   env_topic_config = merge(
     { TOPIC_CONFIGURATION = jsonencode(var.kafka_topics) },
     { SQS_URL = aws_sqs_queue.queue.url, DLQ_URL = aws_sqs_queue.dlq.url },
@@ -18,10 +16,10 @@ locals {
 resource "aws_lambda_function" "lambda" {
   function_name    = var.function_name
   role             = aws_iam_role.consumer.arn
-  handler          = local.function_handler
-  filename         = local.function_zip
-  source_code_hash = filesha256(local.function_zip)
-  runtime          = "python3.9"
+  handler          = var.function_handler
+  filename         = var.path_to_lambda_zip
+  source_code_hash = filesha256(var.path_to_lambda_zip)
+  runtime          = var.lambda_runtime
   timeout          = var.function_timeout
 
 

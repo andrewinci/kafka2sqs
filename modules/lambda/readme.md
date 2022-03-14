@@ -12,6 +12,9 @@
 |------|-------------|------|---------|:--------:|
 | <a name="input_function_name"></a> [function\_name](#input\_function\_name) | Lambda function name | `string` | `"kafka-consumer"` | no |
 | <a name="input_function_timeout"></a> [function\_timeout](#input\_function\_timeout) | Lambda timeout in seconds | `number` | `60` | no |
+| <a name="path_to_lambda_zip"></a> [path\_to\_lambda\_zip](#path\_to\_lambda\_zip) | Path to zipped source code | `string` | ` ${path.module}/lambda.zip` | no |
+| <a name="lambda_runtime"></a> [lambda\_runtime](#lambda\_runtime) | Runtime for Lambda function | `string` | `python3.9` | no |
+| <a name="function_handler"></a> [function\_handler](#function\_handler) | Entrypoint for Lambda Handler | `string` | `kafka2sqs.main.lambda_handler` | no |
 | <a name="input_function_vpc_config"></a> [function\_vpc\_config](#input\_function\_vpc\_config) | VPC configuration for the lambda | <pre>object({<br>    subnet_ids         = list(string)<br>    security_group_ids = list(string)<br>  })</pre> | <pre>{<br>  "security_group_ids": [],<br>  "subnet_ids": []<br>}</pre> | no |
 | <a name="input_kafka_authentication_type"></a> [kafka\_authentication\_type](#input\_kafka\_authentication\_type) | The authentication to perform to connect to kafka. Possible values are: "SASL" or "mTLS". | `string` | n/a | yes |
 | <a name="input_kafka_batch_size"></a> [kafka\_batch\_size](#input\_kafka\_batch\_size) | The largest number of records that Lambda will retrieve from each kafka topic | `number` | `10` | no |
@@ -24,7 +27,7 @@
 | <a name="input_log_group_retention_days"></a> [log\_group\_retention\_days](#input\_log\_group\_retention\_days) | Cloudwatch log group retention in days | `number` | `30` | no |
 | <a name="input_message_retention_seconds"></a> [message\_retention\_seconds](#input\_message\_retention\_seconds) | The number of seconds the SQS retains a message. Used for queue and dlq. | `number` | `1209600` | no |
 | <a name="input_queue_name"></a> [queue\_name](#input\_queue\_name) | Name of the SQS queue name | `string` | `"consumer_sqs"` | no |
-| <a name="input_receive_wait_time_seconds"></a> [receive\_wait\_time\_seconds](#input\_receive\_wait\_time\_seconds) | SQS Long polling configureation. | `number` | `0` | no |
+| <a name="input_receive_wait_time_seconds"></a> [receive\_wait\_time\_seconds](#input\_receive\_wait\_time\_seconds) | SQS Long polling configuration. | `number` | `0` | no |
 | <a name="input_schema_registry_credentials_arn"></a> [schema\_registry\_credentials\_arn](#input\_schema\_registry\_credentials\_arn) | Secret containing the username and password to connect to schema registry | `string` | `""` | no |
 | <a name="input_schema_registry_endpoint"></a> [schema\_registry\_endpoint](#input\_schema\_registry\_endpoint) | Schema registry endpoint including the protocol (i.e. https://...). | `string` | `""` | no |
 ## Outputs
