@@ -12,7 +12,7 @@
 |------|-------------|------|---------|:--------:|
 | <a name="input_function_name"></a> [function\_name](#input\_function\_name) | Lambda function name | `string` | `"kafka-consumer"` | no |
 | <a name="input_function_timeout"></a> [function\_timeout](#input\_function\_timeout) | Lambda timeout in seconds | `number` | `60` | no |
-| <a name="path_to_lambda_zip"></a> [path\_to\_lambda\_zip](#path\_to\_lambda\_zip) | Path to zipped source code | `string` | ` ${path.module}/lambda.zip` | no |
+| <a name="path_to_lambda_zip"></a> [path\_to\_lambda\_zip](#path\_to\_lambda\_zip) | Path to zipped source code that Lambda will run | `string` | ` ${path.module}/lambda.zip` | no |
 | <a name="lambda_runtime"></a> [lambda\_runtime](#lambda\_runtime) | Runtime for Lambda function | `string` | `python3.9` | no |
 | <a name="function_handler"></a> [function\_handler](#function\_handler) | Entrypoint for Lambda Handler | `string` | `kafka2sqs.main.lambda_handler` | no |
 | <a name="input_function_vpc_config"></a> [function\_vpc\_config](#input\_function\_vpc\_config) | VPC configuration for the lambda | <pre>object({<br>    subnet_ids         = list(string)<br>    security_group_ids = list(string)<br>  })</pre> | <pre>{<br>  "security_group_ids": [],<br>  "subnet_ids": []<br>}</pre> | no |
