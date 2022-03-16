@@ -27,6 +27,7 @@
 | <a name="input_receive_wait_time_seconds"></a> [receive\_wait\_time\_seconds](#input\_receive\_wait\_time\_seconds) | SQS Long polling configureation. | `number` | `0` | no |
 | <a name="input_schema_registry_credentials_arn"></a> [schema\_registry\_credentials\_arn](#input\_schema\_registry\_credentials\_arn) | Secret containing the username and password to connect to schema registry | `string` | `""` | no |
 | <a name="input_schema_registry_endpoint"></a> [schema\_registry\_endpoint](#input\_schema\_registry\_endpoint) | Schema registry endpoint including the protocol (i.e. https://...). | `string` | `""` | no |
+| <a name="visibility_timeout_seconds"></a> [visibility\_timeout\_seconds](#visibility\_timeout\_seconds) | Visibility timeout for both queues (main and sqs) | `number` | `30` | no |
 ## Outputs
 
 | Name | Description |
