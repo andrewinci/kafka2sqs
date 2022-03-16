@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/andrewinci/kafka2sqs/compare/v2.3.0...v2.4.0) (2022-03-16)
+
+
+### Features
+
+* Added entry in readme for visibility_timeout_seconds ([b2c9181](https://github.com/andrewinci/kafka2sqs/commit/b2c91819b3dac3f3c24ee5a83af5faa7f6f2a898))
+
 # [2.3.0](https://github.com/andrewinci/kafka2sqs/compare/v2.2.1...v2.3.0) (2022-03-03)
 
 
