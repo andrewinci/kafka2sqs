@@ -131,3 +131,9 @@ variable "receive_wait_time_seconds" {
   description = "SQS Long polling configureation."
   default     = 0
 }
+
+variable "visibility_timeout_seconds" {
+  type        = number
+  description = "The visibility timeout of the output queue and dlq."
+  default     = 30
+}
