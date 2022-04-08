@@ -1,3 +1,10 @@
+## [2.4.1](https://github.com/andrewinci/kafka2sqs/compare/v2.4.0...v2.4.1) (2022-04-08)
+
+
+### Bug Fixes
+
+* Do not print the message ([#5](https://github.com/andrewinci/kafka2sqs/issues/5)) ([18aa380](https://github.com/andrewinci/kafka2sqs/commit/18aa38085a8e4b462fa906c6f545d3d280e3f402))
+
 # [2.4.0](https://github.com/andrewinci/kafka2sqs/compare/v2.3.0...v2.4.0) (2022-03-16)
 
 
