@@ -14,9 +14,7 @@ class AWSHelper:
         return json.loads(response["SecretString"])
 
     def send_to_sqs(self, message: dict):
-        print("Success", message)
         self.sqs.send_message(QueueUrl=self.queue_url, MessageBody=json.dumps(message))
 
     def send_to_dlq(self, message: dict):
-        print("Failure", message)
         self.sqs.send_message(QueueUrl=self.dlq_url, MessageBody=json.dumps(message))
