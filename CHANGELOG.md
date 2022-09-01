@@ -1,3 +1,15 @@
+# [2.5.0](https://github.com/andrewinci/kafka2sqs/compare/v2.4.1...v2.5.0) (2022-09-01)
+
+
+### Bug Fixes
+
+* Lint TF ([efb8479](https://github.com/andrewinci/kafka2sqs/commit/efb8479af12004ed6bcbc3421448d88560d087c1))
+
+
+### Features
+
+* removed counts from mtls secrets module ([2cf2d6a](https://github.com/andrewinci/kafka2sqs/commit/2cf2d6a8f4b11bc5d18dcc7f6d4d13e7eccadb06))
+
 ## [2.4.1](https://github.com/andrewinci/kafka2sqs/compare/v2.4.0...v2.4.1) (2022-04-08)
 
 
