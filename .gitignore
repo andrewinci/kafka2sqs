@@ -14,3 +14,6 @@ test.tfvars
 # Artifacts
 module.zip
 lambda.zip
+
+#IDE
+.idea
