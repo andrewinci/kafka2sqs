@@ -1,3 +1,10 @@
+## [2.5.1](https://github.com/andrewinci/kafka2sqs/compare/v2.5.0...v2.5.1) (2022-09-01)
+
+
+### Bug Fixes
+
+* remove indexes ([#8](https://github.com/andrewinci/kafka2sqs/issues/8)) ([cf5919e](https://github.com/andrewinci/kafka2sqs/commit/cf5919ed314dfa30c7d658921518e1221058f954))
+
 # [2.5.0](https://github.com/andrewinci/kafka2sqs/compare/v2.4.1...v2.5.0) (2022-09-01)
 
 
