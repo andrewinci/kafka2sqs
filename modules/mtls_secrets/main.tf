@@ -15,7 +15,7 @@ resource "aws_secretsmanager_secret_version" "kafka_user_certificate" {
 }
 
 resource "aws_secretsmanager_secret" "kafka_ca_certificate" {
-  name  = "kafka_ca_certificate"
+  name = "kafka_ca_certificate"
 }
 
 resource "aws_secretsmanager_secret_version" "kafka_ca_certificate" {
@@ -26,7 +26,7 @@ resource "aws_secretsmanager_secret_version" "kafka_ca_certificate" {
 }
 
 resource "aws_secretsmanager_secret" "schema_registry_credentials" {
-  name  = var.schema_registry_secret_name
+  name = var.schema_registry_secret_name
 }
 
 resource "aws_secretsmanager_secret_version" "schema_registry_credentials" {
