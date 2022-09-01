@@ -19,7 +19,7 @@ resource "aws_secretsmanager_secret" "kafka_ca_certificate" {
 }
 
 resource "aws_secretsmanager_secret_version" "kafka_ca_certificate" {
-  secret_id = aws_secretsmanager_secret.kafka_ca_certificate[0].id
+  secret_id = aws_secretsmanager_secret.kafka_ca_certificate.id
   secret_string = jsonencode({
     certificate = var.ca_certificate
   })
@@ -30,7 +30,7 @@ resource "aws_secretsmanager_secret" "schema_registry_credentials" {
 }
 
 resource "aws_secretsmanager_secret_version" "schema_registry_credentials" {
-  secret_id = aws_secretsmanager_secret.schema_registry_credentials[0].id
+  secret_id = aws_secretsmanager_secret.schema_registry_credentials.id
   secret_string = jsonencode({
     username = var.schema_registry_username
     password = var.schema_registry_password
